@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { invoke } from '@tauri-apps/api/tauri';
+
+invoke('greet', { name: 'World!' })
+  .then(console.log)
+
 const props = defineProps<{
   page: string,
 }>();
@@ -10,7 +15,7 @@ const props = defineProps<{
       <div class="page" id="main" v-if="page == 'main'">Main page</div>
       <div class="page" id="add" v-else-if="page == 'add'">Add business page</div>
       <div class="page" id="settings" v-else-if="page == 'settings'">Settings page</div>
-    </Transition>
+    </Transition> 
   </div>
 </template>
 

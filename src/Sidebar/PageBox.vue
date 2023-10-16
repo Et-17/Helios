@@ -13,13 +13,13 @@ defineExpose({
 </script>
 
 <template>
-  <box class="page-box" ref="container">
+  <div class="page-box" ref="container">
     <span class="material-icons"> {{ icon }} </span>
-  </box>
+  </div>
 </template>
 
 <style>
-.page-box:nth-of-type(1) {
+.page-box:nth-of-type(2) {
   margin-top: 0px;
 }
 
