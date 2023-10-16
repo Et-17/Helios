@@ -1,0 +1,114 @@
+- name: Jabil
+  genre: manufacturing
+  description: A company that does comprehensive design, product management, and supply chain services
+  based:
+    city: St. Petersburg
+    state: Florida
+  address: 10800 Roosevelt Blvd N
+  phone: (727)-577-9749
+  revenue: 33500000000
+  ticker: JBL
+  established: 1966
+
+- name: Raymond James Financial
+  genre: financial
+  description: A company that manages investment banking and financial advisory
+  based:
+    city: St. Petersburg
+    state: Florida
+  address: >
+    880 Carillon Parkway
+    St. Petersburg, FL 33716
+  phone: (727)-567-1000
+  revenue: 8000000000
+  ticker: RJF
+  established: 1962
+
+- name: HSN
+  genre: shopping
+  description: An online television show that sells products
+  based:
+    city: St. Petersburg
+    state: Florida
+  address:  >
+    1 HSN Drive
+    St. Petersburg, FL 33729
+  phone: (800)-933-2887
+  revenue: 3600000000
+  # ticker: N/A
+  established: 1977
+
+- name: Johns Hopkins All Children's Hospital
+  genre: hospital
+  description: A large high-quality pediatric hospital
+  based:
+    city: Baltimore
+    state: Maryland
+  address: >
+    501 6th Avenue South
+    St. Petersburg, FL 33701
+  phone: (727)-898-7451
+  revenue: 470000000
+  # ticker: N/A
+  established: 1926
+
+- name: Tampa Bay Times
+  genre: news
+  description: An unbiased print-and-online journal about Tampa
+  based:
+    city: Tampa
+    state: Florida
+  address: >
+    1000 N Ashley Drive
+    Tampa, FL 33602
+  phone: (800)-888-7012
+  revenue: 770000000
+  # ticker: N/A
+  established: 1884
+
+- name: Cox Target Media
+  genre: marketing
+  description: A disruptive marketing organization that adaptes to shopper trends
+  based:
+    city: St. Petersburg
+    state: Florida
+  address: >
+    805 Executive Center Drive W
+    St. Petersburg, FL 33702
+  phone: (727)-399-3000
+  revenue: 220000000
+  # ticker: N/A
+  establishde: 1996
+
+- name: Goodwill-Suncoast
+- name: Lifestyle Family Fitness, Inc.
+- name: St. Petersburg College
+- name: Danka Holding Co.
+- name: HSNi LLC
+- name: USANI Sub, LLC
+- name: Power Design
+- name: PSCU
+- name: Community Brands
+- name: Catalina
+- name: Bayfront Health St. Petersburg
+- name: St Anthony's Hospital Inc
+- name: The Renz Nichols Family Limited Partnership
+- name: Young Men's Christian Association of Greater St Petersburg, Inc.
+- name: Pinellas Suncoast Transit Authority, Inc.
+- name: Bankers Surety
+- name: A2 Global Electronics + Solutions
+- name: Great Bay Distributors
+- name: Terra Constructon Group, Inc.
+- name: The HOTH
+- name: Bankers Financial Corporation
+- name: American Strategic Insurance
+- name: UPC Insurance
+- name: Eckerd College
+- name: Wright Flood
+- name: Retail Business Development
+- name: Geoscan Group
+- name: Ptec-St. Petersburg Campus
+- name: Diocese of Saint Petersburg
+- name: Roll-a-way
+- name: MTS Medication Technologies, Inc.
+- name: iCare
