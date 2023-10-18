@@ -1,22 +1,7 @@
 <script setup lang="ts">
-import { readDir, writeTextFile, createDir, BaseDirectory } from '@tauri-apps/api/fs';
-import type { FileEntry } from '@tauri-apps/api/fs';
-import { ref } from 'vue';
+import { invoke } from '@tauri-apps/api/tauri'
 
-// const read_dir_stuff = await readDir('users', { dir: BaseDirectory.AppData, recursive: true })
-
-function processEntries(entries: FileEntry[]) {
-  for (const entry of entries) {
-    console.log(`Entry: ${entry.path}`);
-    if (entry.children) {
-      processEntries(entry.children);
-    }
-  }
-}
-
-writeTextFile('users/test.txt', 'this is a test', { dir: BaseDirectory.AppConfig })
-  .then(_ => readDir('users', { dir: BaseDirectory.AppData, recursive: true }))
-  .then(processEntries);
+invoke('get_companies').then(console.log)
 </script>
 
 <template>
