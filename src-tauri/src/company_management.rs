@@ -1,23 +1,26 @@
+use serde_yaml;
+use std::fs;
+
 #[derive(serde::Serialize)]
-pub struct Company {
-    pub name: String,
+struct City {
+    city: String,
+    state: String,
 }
 
-#[tauri::command]
-pub fn get_company() -> Company {
-    Company {
-        name: "Hello".into(),
-    }
+#[derive(serde::Serialize, serde::Deserialize)]
+pub struct Company {
+    pub name: String,
+    pub genre: String,
+    pub description: String,
+    pub address: String,
+    pub phone: String,
+    pub revenue: i64,
+    pub ticker: String,
+    pub established: i16,
 }
 
 #[tauri::command]
 pub fn get_companies() -> Vec<Company> {
-    vec![
-        Company {
-            name: "Disney".into(),
-        },
-        Company {
-            name: "Pixar".into(),
-        },
-    ]
+    let companies_yaml = fs::read_to_string("../companies.yml").unwrap();
+    serde_yaml::from_str::<Vec<Company>>(&companies_yaml).unwrap()
 }

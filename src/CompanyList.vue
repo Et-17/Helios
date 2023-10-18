@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { invoke } from '@tauri-apps/api/tauri'
+import { ref, onMounted } from 'vue';
 
-invoke('get_companies').then(console.log)
+const companies = ref({});
+
+onMounted(() => invoke('get_companies').then((c: any) => companies.value = c));
 </script>
 
 <template>
@@ -17,6 +20,10 @@ invoke('get_companies').then(console.log)
         <tr>
           <th>Jabil</th>
           <th>Manufacturing</th>
+        </tr>
+        <tr v-for="company in companies">
+          <th>{{ company["name"] }}</th>
+          <th>{{ company["genre"] }}</th>
         </tr>
       </tbody>
     </table>
