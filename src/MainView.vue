@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import CompanyList from './CompanyList.vue'
 import { invoke } from '@tauri-apps/api/tauri';
 
 invoke('greet', { name: 'World!' })
@@ -12,10 +13,11 @@ const props = defineProps<{
 <template>
   <div id="main-block">
     <Transition name="pages" mode="out-in">
-      <div class="page" id="main" v-if="page == 'main'">Main page</div>
+      <!-- <div class="page" id="main" v-if="page == 'main'">Main page</div> -->
+      <CompanyList class="page" id="main" v-if="page == 'main'" />
       <div class="page" id="add" v-else-if="page == 'add'">Add business page</div>
       <div class="page" id="settings" v-else-if="page == 'settings'">Settings page</div>
-    </Transition> 
+    </Transition>
   </div>
 </template>
 
@@ -28,7 +30,7 @@ const props = defineProps<{
   left: calc(var(--icon-box-size) + var(--inner-gutter) * 2 + var(--outer-gutter) * 2);
   background-color: var(--palette-card);
   box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.25);
-  font-size: 5rem;
+  /* font-size: 5rem; */
   overflow: hidden;
 }
 
@@ -37,7 +39,7 @@ const props = defineProps<{
   width: 100%;
   height: 100%;
   top: 0%;
-  line-height: 30rem;
+  /* line-height: 30rem; */
   text-align: center;
 }
 

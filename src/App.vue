@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import Sidebar from './Sidebar/Sidebar.vue';
+import CompanyList from './CompanyList.vue';
 import MainView from './MainView.vue';
 
 const current_page = ref('main');
@@ -8,7 +9,8 @@ const current_page = ref('main');
 
 <template>
   <Sidebar @page-change="p => current_page = p" />
-  <MainView :page="current_page" />
+  <!-- <MainView :page="current_page" /> -->
+  <CompanyList />
 </template>
 
 <style>
