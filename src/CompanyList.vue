@@ -1,33 +1,39 @@
 <script setup lang="ts">
-import { invoke } from '@tauri-apps/api/tauri'
-import { ref, onMounted } from 'vue';
+import { invoke } from '@tauri-apps/api/tauri';
+import { ref, onMounted, type Ref } from 'vue';
+import { companies, type Company } from './companyManagement';
 
-const companies = ref({});
+const column_names: Record<keyof Company, string> = {
+  "name": "Company Name",
+  "genre": "Industry",
+  "description": "Description",
+  "address": "Address",
+  "phone": "Phone",
+  "revenue": "Revenue",
+  "ticker": "Ticker",
+  "established": "Est."
+}
 
-onMounted(() => invoke('get_companies').then((c: any) => companies.value = c));
+const shown_columns: Ref<(keyof Company)[]> = ref([
+  "name",
+  "genre",
+  "established"
+])
 </script>
 
 <template>
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th>Company</th>
-          <th>Genre</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>Jabil</th>
-          <th>Manufacturing</th>
-        </tr>
-        <tr v-for="company in companies">
-          <th>{{ company["name"] }}</th>
-          <th>{{ company["genre"] }}</th>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th v-for="column in shown_columns">{{ column_names[column] }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="company in companies">
+        <td v-for="column in shown_columns">{{ company[column] }}</td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <style scoped="true">

@@ -13,7 +13,6 @@ const props = defineProps<{
 <template>
   <div id="main-block">
     <Transition name="pages" mode="out-in">
-      <!-- <div class="page" id="main" v-if="page == 'main'">Main page</div> -->
       <CompanyList class="page" id="main" v-if="page == 'main'" />
       <div class="page" id="add" v-else-if="page == 'add'">Add business page</div>
       <div class="page" id="settings" v-else-if="page == 'settings'">Settings page</div>
@@ -37,10 +36,12 @@ const props = defineProps<{
 .page {
   position: absolute;
   width: 100%;
-  height: 100%;
   top: 0%;
-  /* line-height: 30rem; */
   text-align: center;
+
+  :not(#main) {
+    height: 100%;
+  }
 }
 
 .pages-enter-active,

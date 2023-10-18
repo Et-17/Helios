@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { get_companies } from './companyManagement';
 import Sidebar from './Sidebar/Sidebar.vue';
 import CompanyList from './CompanyList.vue';
 import MainView from './MainView.vue';
 
 const current_page = ref('main');
+
+onMounted(get_companies);
 </script>
 
 <template>
   <Sidebar @page-change="p => current_page = p" />
-  <!-- <MainView :page="current_page" /> -->
-  <CompanyList />
+  <MainView :page="current_page" />
 </template>
 
 <style>
