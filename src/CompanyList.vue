@@ -22,37 +22,51 @@ const shown_columns: Ref<(keyof Company)[]> = ref([
 </script>
 
 <template>
-  <table>
-    <thead>
-      <tr>
-        <th v-for="column in shown_columns">{{ column_names[column] }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="company in companies">
-        <td v-for="column in shown_columns">{{ company[column] }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div>
+    <table id="company-list">
+      <thead>
+        <tr>
+          <th v-for="column in shown_columns">{{ column_names[column] }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="company in companies">
+          <td v-for="column in shown_columns">{{ company[column] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
-<style scoped="true">
-div {
-  position: absolute;
-  top: var(--outer-gutter);
-  right: var(--outer-gutter);
-  bottom: var(--outer-gutter);
-  left: calc(var(--icon-box-size) + var(--inner-gutter) * 2 + var(--outer-gutter) * 2);
-  overflow: hidden;
-}
-
-table {
+<style lang="scss">
+#company-list {
   width: 100%;
 }
 
-tr {
+#company-list tr {
   width: 100%;
-  background-color: var(--palette-card);
   margin: var(--outer-gutter);
+
+  th {
+    font-family: 'Young Serif', serif;
+    font-style: bold;
+    font-size: 1.1rem;
+    line-height: 2;
+  }
+
+  td {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 2;
+  }
+
+  th,
+  td {
+    text-align: left;
+  }
+}
+
+#company-list tbody tr:hover * {
+  background-color: var(--palette-highlight);
+  cursor: pointer;
 }
 </style>

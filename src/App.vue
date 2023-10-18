@@ -15,7 +15,11 @@ onMounted(get_companies);
   <MainView :page="current_page" />
 </template>
 
-<style>
+<style lang="scss">
+// Young Serif font used in the table headers
+@use "./Fonts/young-serif.css";
+// Montserrat font used in the table headers
+@use './Fonts/montserrat.css';
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 :root {

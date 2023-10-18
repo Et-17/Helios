@@ -20,7 +20,7 @@ const props = defineProps<{
   </div>
 </template>
 
-<style>
+<style lang="scss">
 #main-block {
   position: absolute;
   top: var(--outer-gutter);
@@ -29,7 +29,6 @@ const props = defineProps<{
   left: calc(var(--icon-box-size) + var(--inner-gutter) * 2 + var(--outer-gutter) * 2);
   background-color: var(--palette-card);
   box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.25);
-  /* font-size: 5rem; */
   overflow: hidden;
 }
 
