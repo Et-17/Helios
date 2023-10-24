@@ -15,6 +15,6 @@ export type Company = {
 export const companies: Ref<Company[]> = ref([]);
 
 export async function get_companies() {
-    await invoke<Company[]>('get_companies')
+    await invoke<Company[]>('get_companies', { filter: {} })
         .then((c: Company[]) => companies.value = c);
 }
