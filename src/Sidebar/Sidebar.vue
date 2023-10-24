@@ -7,14 +7,20 @@ const emit = defineEmits<{
   (e: 'page-change', page: string): void
 }>();
 
+// This has all the pages being shown in the sidebar in the format of
+// [page code, google icons name]
 const pages: [string, string][] = [
   ['main', 'flare'],
   ['add', 'add'],
   ['settings', 'settings']
 ];
 
+// Using refs in v-for isn't guarenteed to give you the correct ordering so I
+// use this to apply the ordering. It creates a dictionary from the page code to
+// the index of that page in the sidebar. 
 var page_nums = new Map<string, number>(pages.map((val, index) => [val[0], index]));
 
+// This stores the vue refs to the sidebar boxes
 const page_boxs: Ref<InstanceType<typeof PageBox>[]> = ref([]);
 
 const current_page = ref('main');

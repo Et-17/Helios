@@ -2,8 +2,7 @@
 import CompanyList from './CompanyList.vue'
 import { invoke } from '@tauri-apps/api/tauri';
 
-invoke('ping_db')
-  .then(console.log)
+invoke('get_companies');
 
 const props = defineProps<{
   page: string,
