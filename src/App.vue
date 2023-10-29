@@ -1,13 +1,27 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { get_companies } from './companyManagement';
+import { get_companies, convert_single_filter } from './companyManagement';
 import Sidebar from './Sidebar/Sidebar.vue';
 import CompanyList from './CompanyList.vue';
 import MainView from './MainView.vue';
 
 const current_page = ref('main');
 
-onMounted(get_companies);
+// onMounted(() => get_companies({
+//   $and: [
+//     async convert_single_filter({
+//       column: "name",
+//       name: "=",
+//       value: "HSN"
+//     })
+//   ]
+// }));
+
+onMounted(() => convert_single_filter({
+  column: "name",
+  name: "=",
+  value: "HSN"
+}).then(f => get_companies({ $and: [f] })))
 </script>
 
 <template>

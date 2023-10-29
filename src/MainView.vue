@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import CompanyList from './CompanyList.vue'
 import { invoke } from '@tauri-apps/api/tauri';
+import { convert_single_filter } from './companyManagement';
 
-invoke('get_companies');
+// invoke('get_companies');
+
+convert_single_filter({
+  column: "name",
+  name: "=",
+  value: "HSN"
+}).then(f => console.log(JSON.stringify({ $and: [f] })))
 
 const props = defineProps<{
   page: string,

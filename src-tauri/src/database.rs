@@ -9,6 +9,7 @@ pub async fn get_companies(
     client: tauri::State<'_, Client>,
     filter: bson::Document,
 ) -> Result<Vec<Document>, ()> {
+    println!("{}", filter);
     let db = client.database("helios");
     let companies_collection = db.collection::<Document>("companies");
     let mut cursor = companies_collection
