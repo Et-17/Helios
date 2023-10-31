@@ -24,28 +24,26 @@ const shown_columns: Ref<(keyof Company)[]> = ref([
 </script>
 
 <template>
-  <div>
-    <table id="company-list">
-      <thead>
-        <tr>
-          <th v-for="column in shown_columns">{{ column_names[column] }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="company in companies">
-          <td v-for="column in shown_columns">{{ company[column] }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <table class="company-list">
+    <thead>
+      <tr>
+        <th v-for="column in shown_columns">{{ column_names[column] }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="company in companies">
+        <td v-for="column in shown_columns">{{ company[column] }}</td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <style lang="scss">
-#company-list {
+.company-list {
   width: 100%;
 }
 
-#company-list tr {
+.company-list tr {
   width: 100%;
   margin: var(--outer-gutter);
 
@@ -67,7 +65,7 @@ const shown_columns: Ref<(keyof Company)[]> = ref([
   }
 }
 
-#company-list tbody tr:hover * {
+.company-list tbody tr:hover * {
   background-color: var(--palette-highlight);
   cursor: pointer;
 }

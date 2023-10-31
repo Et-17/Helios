@@ -2,6 +2,7 @@
 import CompanyList from './CompanyList.vue'
 import { invoke } from '@tauri-apps/api/tauri';
 import { convert_single_filter } from './companyManagement';
+import { ref } from 'vue';
 
 // invoke('get_companies');
 
@@ -14,15 +15,20 @@ convert_single_filter({
 const props = defineProps<{
   page: string,
 }>();
+
+const show_filter = ref(true);
 </script>
 
 <template>
-  <div id="main-block">
+  <div id="main-block" :class="{ show_filters: show_filter && page == 'main' }">
     <Transition name="pages" mode="out-in">
       <CompanyList class="page" id="main" v-if="page == 'main'" />
       <div class="page" id="add" v-else-if="page == 'add'">Add business page</div>
       <div class="page" id="settings" v-else-if="page == 'settings'">Settings page</div>
     </Transition>
+  </div>
+  <div id="filter-block" :class="{ show: show_filter && page == 'main' }">
+    <span>Hello there</span>
   </div>
 </template>
 
@@ -31,11 +37,44 @@ const props = defineProps<{
   position: absolute;
   top: var(--outer-gutter);
   right: var(--outer-gutter);
+  bottom: calc(var(--outer-gutter));
+  left: calc(var(--icon-box-size) + var(--inner-gutter) * 2 + var(--outer-gutter) * 2);
+  background-color: var(--palette-card);
+  box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  transition: bottom 1s;
+
+  &.show_filters {
+    bottom: calc(var(--outer-gutter) * 2 + 100px);
+  }
+}
+
+#filter-block {
+  position: absolute;
+  right: var(--outer-gutter);
   bottom: var(--outer-gutter);
   left: calc(var(--icon-box-size) + var(--inner-gutter) * 2 + var(--outer-gutter) * 2);
   background-color: var(--palette-card);
   box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.25);
   overflow: hidden;
+  transition: height 1s;
+
+  * {
+    transition: opacity 1s;
+  }
+
+  &.show {
+    opacity: 100;
+    height: 100px;
+  }
+
+  &:not(.show) {
+    height: 0px;
+  }
+
+  &:not(.show) * {
+    opacity: 0;
+  }
 }
 
 .page {
