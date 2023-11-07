@@ -11,6 +11,17 @@ export type Company = {
     ticker: string;
     established: number;
 }
+export const columnkeys: string[] = ["name", "genre", "description", "address", "phone", "revenue", "ticker", "established"]
+export const columns: Record<string, string> = {
+    name: "string",
+    genre: "string",
+    description: "string",
+    address: "string",
+    phone: "string",
+    revenue: "number",
+    ticker: "string",
+    established: "number"
+}
 
 // This just covers the filters being sent by the components. I've decided to
 // just use Object for the converted filters we're sending to mongo. If we typed
@@ -22,9 +33,10 @@ export type Filter = {
 }
 
 export const companies: Ref<Company[]> = ref([]);
+export const filters: Ref<Filter[]> = ref([]);
 
 // This populates the companies state with all the companies in the database
-export async function get_companies(filters: { $and: Object[] }) {
+export async function get_companies(filters: { $and?: Object[] }) {
     await invoke<Company[]>('get_companies', { filter: filters })
         .then((c: Company[]) => companies.value = c);
 }
@@ -48,7 +60,7 @@ export async function convert_single_filter(filter: Filter): Promise<Object> {
     }
 
     var mongodb_value = typeof filter.value == "string" ? filter.value : {
-        $number: `${filter.value.valueOf()}`
+        $numberLong: `${filter.value.valueOf()}`
     }
 
     var mongodb_filter_object: Record<string, Object> = {};
@@ -57,4 +69,25 @@ export async function convert_single_filter(filter: Filter): Promise<Object> {
     mongodb_filter_object[filter.column] = mongodb_operation_object;
 
     return mongodb_filter_object as Object;
+}
+
+export async function update_companies() {
+    console.log(filters.value);
+    if (filters.value.length == 0) {
+        get_companies({});
+    } else {
+        // while functional is the messiah i can't figure out the promise stuff
+        // so iterative it is ig
+        const mongoed_filters: Object[] = []
+        for (var i = 0; i < filters.value.length; i++) {
+            mongoed_filters.push(await convert_single_filter(filters.value[i]));
+            console.log(mongoed_filters[i]);
+        }
+        get_companies({
+            $and: mongoed_filters
+        })
+        // get_companies({
+        //     $and: filters.value.map(convert_single_filter)
+        // });
+    }
 }

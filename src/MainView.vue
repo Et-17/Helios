@@ -1,16 +1,9 @@
 <script setup lang="ts">
 import CompanyList from './CompanyList.vue'
+import FilterMenu from './FilterMenu.vue'
 import { invoke } from '@tauri-apps/api/tauri';
 import { convert_single_filter } from './companyManagement';
 import { ref } from 'vue';
-
-// invoke('get_companies');
-
-convert_single_filter({
-  column: "name",
-  name: "=",
-  value: "HSN"
-}).then(f => console.log(JSON.stringify({ $and: [f] })))
 
 const props = defineProps<{
   page: string,
@@ -27,9 +20,7 @@ const show_filter = ref(true);
       <div class="page" id="settings" v-else-if="page == 'settings'">Settings page</div>
     </Transition>
   </div>
-  <div id="filter-block" :class="{ show: show_filter && page == 'main' }">
-    <span>Hello there</span>
-  </div>
+  <FilterMenu id="filter-block" :class="{ show: show_filter && page == 'main' }" />
 </template>
 
 <style lang="scss">
@@ -45,7 +36,8 @@ const show_filter = ref(true);
   transition: bottom 1s;
 
   &.show_filters {
-    bottom: calc(var(--outer-gutter) * 2 + 100px);
+    // bottom: calc(var(--outer-gutter) * 2 + 100px);
+    bottom: calc(var(--outer-gutter) * 1.236 + 38.2vh)
   }
 }
 
@@ -65,7 +57,7 @@ const show_filter = ref(true);
 
   &.show {
     opacity: 100;
-    height: 100px;
+    height: calc((100vh - var(--outer-gutter) * 2) * 0.382);
   }
 
   &:not(.show) {

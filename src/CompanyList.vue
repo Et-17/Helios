@@ -19,6 +19,7 @@ const column_names: Record<keyof Company, string> = {
 const shown_columns: Ref<(keyof Company)[]> = ref([
   "name",
   "genre",
+  "revenue",
   "established"
 ])
 </script>
