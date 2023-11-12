@@ -23,6 +23,12 @@ async function addFilter() {
 
   update_companies();
 }
+
+async function removeFilter(index: number) {
+  filters.value = filters.value.filter((_, i) => i != index);
+
+  update_companies();
+}
 </script>
 
 <template>
@@ -36,10 +42,13 @@ async function addFilter() {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="filter in filters">
+        <tr v-for="(filter, index) in filters">
           <td>{{ filter.column }}</td>
           <td>{{ filter.name }}</td>
           <td>{{ filter.value }}</td>
+          <td>
+            <button class="material-icons" @click="() => removeFilter(index)">delete</button>
+          </td>
         </tr>
         <tr>
           <td>
@@ -55,12 +64,8 @@ async function addFilter() {
           <td>
             <input type="text" name="newfiltervalue" id="newfiltervalue" ref="valueSelectionRef">
           </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
           <td>
-            <button id="addfilter" class="material-icons" @click="addFilter">add</button>
+            <button class="material-icons" @click="addFilter">add</button>
           </td>
         </tr>
       </tbody>
