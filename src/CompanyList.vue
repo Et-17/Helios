@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { invoke } from '@tauri-apps/api/tauri';
 import { ref, onMounted, type Ref } from 'vue';
-import { companies, type Company } from './companyManagement';
+import { companies, shown_columns, type Company } from './companyManagement';
 
 // The names I am using in the database aren't exactly client-ready names so
 // this will translate them
@@ -15,13 +15,6 @@ const column_names: Record<keyof Company, string> = {
   "ticker": "Ticker",
   "established": "Est."
 }
-
-const shown_columns: Ref<(keyof Company)[]> = ref([
-  "name",
-  "genre",
-  "revenue",
-  "established"
-])
 </script>
 
 <template>

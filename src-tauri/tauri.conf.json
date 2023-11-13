@@ -18,6 +18,10 @@
         "scope": [
           "$APPDATA\\**\\*"
         ]
+      },
+      "dialog": {
+        "save": true,
+        "message": true
       }
     },
     "bundle": {

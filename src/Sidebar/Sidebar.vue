@@ -12,6 +12,7 @@ const emit = defineEmits<{
 const pages: [string, string][] = [
   ['main', 'flare'],
   ['add', 'add'],
+  ['report', 'summarize'],
   ['settings', 'settings']
 ];
 

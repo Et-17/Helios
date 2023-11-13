@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import CompanyList from './CompanyList.vue'
 import FilterMenu from './FilterMenu.vue'
+import ReportGeneration from './ReportGeneration/ReportGeneration.vue'
 import { invoke } from '@tauri-apps/api/tauri';
 import { convert_single_filter } from './companyManagement';
 import { ref } from 'vue';
@@ -16,6 +17,7 @@ const show_filter = ref(true);
   <div id="main-block" :class="{ show_filters: show_filter && page == 'main' }">
     <Transition name="pages" mode="out-in">
       <CompanyList class="page" id="main" v-if="page == 'main'" />
+      <ReportGeneration class="page" id="report" v-else-if="page == 'report'" />
       <div class="page" id="add" v-else-if="page == 'add'">Add business page</div>
       <div class="page" id="settings" v-else-if="page == 'settings'">Settings page</div>
     </Transition>
@@ -32,7 +34,8 @@ const show_filter = ref(true);
   left: calc(var(--icon-box-size) + var(--inner-gutter) * 2 + var(--outer-gutter) * 2);
   background-color: var(--palette-card);
   box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
   transition: bottom 1s;
 
   &.show_filters {
@@ -48,7 +51,8 @@ const show_filter = ref(true);
   left: calc(var(--icon-box-size) + var(--inner-gutter) * 2 + var(--outer-gutter) * 2);
   background-color: var(--palette-card);
   box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
   transition: height 1s;
 
   * {
@@ -75,7 +79,8 @@ const show_filter = ref(true);
   top: 0%;
   text-align: center;
 
-  :not(#main) {
+  :not(#main),
+  :not(#report) {
     height: 100%;
   }
 }

@@ -23,6 +23,13 @@ export const columns: Record<string, string> = {
     established: "number"
 }
 
+export const shown_columns: Ref<(keyof Company)[]> = ref([
+    "name",
+    "genre",
+    "revenue",
+    "established"
+])
+
 // This just covers the filters being sent by the components. I've decided to
 // just use Object for the converted filters we're sending to mongo. If we typed
 // those the type gymnastics and DX would be hell. It's just not worth it.
