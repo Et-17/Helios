@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { companies, filters, type Filter, type Company, columnkeys, columns, update_companies } from './companyManagement';
-import { onMounted, ref, type Ref } from 'vue';
+import { filters, type Company, columnkeys, columns, update_companies } from './companyManagement';
+import { ref, type Ref } from 'vue';
 
 const filterSelectionRef: Ref<HTMLSelectElement | null> = ref(null);
 const operationSelectionRef: Ref<HTMLSelectElement | null> = ref(null);

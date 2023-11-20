@@ -13,14 +13,14 @@ const show_filter = computed(() => filter_window_open && props.page == CompanyLi
 </script>
 
 <template>
-  <div id="main-block">
+  <div id="main-block" :class="{ show_filters: show_filter }">
     <Transition name="pages" mode="out-in">
       <KeepAlive>
         <component :is="page" class="page" />
       </KeepAlive>
     </Transition>
   </div>
-  <FilterMenu id="filter-block" />
+  <FilterMenu id="filter-block" :class="{ show: show_filter }" />
 </template>
 
 <style lang="scss">
