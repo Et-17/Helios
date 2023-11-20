@@ -1,21 +1,11 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { get_companies, convert_single_filter, update_companies } from './companyManagement';
+import { shallowRef, onMounted, type ShallowRef, type Component } from 'vue';
+import { update_companies } from './companyManagement';
 import Sidebar from './Sidebar/Sidebar.vue';
 import CompanyList from './CompanyList.vue';
 import MainView from './MainView.vue';
 
-const current_page = ref('main');
-
-// onMounted(() => get_companies({
-//   $and: [
-//     async convert_single_filter({
-//       column: "name",
-//       name: "=",
-//       value: "HSN"
-//     })
-//   ]
-// }));
+const current_page: ShallowRef<Component> = shallowRef(CompanyList);
 
 onMounted(update_companies)
 </script>

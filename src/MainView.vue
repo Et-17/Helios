@@ -1,28 +1,26 @@
 <script setup lang="ts">
 import CompanyList from './CompanyList.vue'
 import FilterMenu from './FilterMenu.vue'
-import ReportGeneration from './ReportGeneration/ReportGeneration.vue'
-import { invoke } from '@tauri-apps/api/tauri';
-import { convert_single_filter } from './companyManagement';
-import { ref } from 'vue';
+import { ref, type Component, computed } from 'vue';
 
 const props = defineProps<{
-  page: string,
+  page: Component,
 }>();
 
-const show_filter = ref(true);
+const filter_window_open = ref(true);
+
+const show_filter = computed(() => filter_window_open && props.page == CompanyList);
 </script>
 
 <template>
-  <div id="main-block" :class="{ show_filters: show_filter && page == 'main' }">
+  <div id="main-block">
     <Transition name="pages" mode="out-in">
-      <CompanyList class="page" id="main" v-if="page == 'main'" />
-      <ReportGeneration class="page" id="report" v-else-if="page == 'report'" />
-      <div class="page" id="add" v-else-if="page == 'add'">Add business page</div>
-      <div class="page" id="settings" v-else-if="page == 'settings'">Settings page</div>
+      <KeepAlive>
+        <component :is="page" class="page" />
+      </KeepAlive>
     </Transition>
   </div>
-  <FilterMenu id="filter-block" :class="{ show: show_filter && page == 'main' }" />
+  <FilterMenu id="filter-block" />
 </template>
 
 <style lang="scss">
@@ -78,16 +76,11 @@ const show_filter = ref(true);
   width: 100%;
   top: 0%;
   text-align: center;
-
-  :not(#main),
-  :not(#report) {
-    height: 100%;
-  }
 }
 
 .pages-enter-active,
 .pages-leave-active {
-  transition: all 0.25s;
+  transition: opacity 0.25s;
 }
 
 .pages-enter-from,

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { invoke } from '@tauri-apps/api/tauri';
-import { ref, onMounted, type Ref } from 'vue';
 import { companies, shown_columns, type Company } from './companyManagement';
 
 // The names I am using in the database aren't exactly client-ready names so

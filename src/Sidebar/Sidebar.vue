@@ -1,32 +1,34 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import type { Ref } from 'vue';
+import { shallowRef, ref, watch } from 'vue';
+import type { Component, Ref, ShallowRef } from 'vue';
 import PageBox from './PageBox.vue';
+import ComponentTest from '@/ComponentTest.vue';
+import ReportGeneration from '@/ReportGeneration/ReportGeneration.vue';
+import CompanyList from '@/CompanyList.vue';
 
 const emit = defineEmits<{
-  (e: 'page-change', page: string): void
+  (e: 'page-change', page: Component): void
 }>();
 
 // This has all the pages being shown in the sidebar in the format of
-// [page code, google icons name]
-const pages: [string, string][] = [
-  ['main', 'flare'],
-  ['add', 'add'],
-  ['report', 'summarize'],
-  ['settings', 'settings']
-];
+// [page component, google icons name]
+const pages: [Component, string][] = [
+  [CompanyList, 'flare'],
+  [ReportGeneration, 'summarize'],
+  [ComponentTest, 'add']
+]
 
 // Using refs in v-for isn't guarenteed to give you the correct ordering so I
 // use this to apply the ordering. It creates a dictionary from the page code to
 // the index of that page in the sidebar. 
-var page_nums = new Map<string, number>(pages.map((val, index) => [val[0], index]));
+var page_nums = new Map<Component, number>(pages.map((val, index) => [val[0], index]));
 
 // This stores the vue refs to the sidebar boxes
 const page_boxs: Ref<InstanceType<typeof PageBox>[]> = ref([]);
 
-const current_page = ref('main');
+const current_page: ShallowRef<Component> = shallowRef(CompanyList);
 
-watch(current_page, async function (new_val: string) {
+watch(current_page, async function (new_val: Component) {
   emit('page-change', new_val);
 });
 </script>

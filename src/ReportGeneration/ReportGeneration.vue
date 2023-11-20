@@ -42,6 +42,5 @@ async function genReportBody() {
 </script>
 
 <template>
-  <!-- <button @click="() => genReport().then(console.log)">Generate Report</button> -->
   <button @click="storeReport">Generate Report</button>
 </template>
