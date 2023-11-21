@@ -8,6 +8,7 @@ import CompanyList from '@/CompanyList.vue';
 
 const emit = defineEmits<{
   (e: 'page-change', page: Component): void
+  (e: 'toggle-filters', show: boolean): void
 }>();
 
 // This has all the pages being shown in the sidebar in the format of
@@ -30,22 +31,34 @@ const page_boxs: Ref<InstanceType<typeof PageBox>[]> = ref([]);
 // a shallow ref to prevent unneeded deep reactivity.
 const current_page: ShallowRef<Component> = shallowRef(CompanyList);
 
-const indicator_height = computed(() => page_boxs.value[page_nums.get(current_page.value) ?? 0]?.top + 'px');
+const indicator_top = computed(() => page_boxs.value[page_nums.get(current_page.value) ?? 0]?.top + 'px');
+
+const show_filter_window = ref(false);
 
 watch(current_page, async function (new_val: Component) {
   emit('page-change', new_val);
 });
+
+watch(show_filter_window, async function (new_val: boolean) {
+  emit('toggle-filters', new_val);
+})
 </script>
 
 <template>
   <div id="sidebar">
-    <div id="active-page-indicator" :style="{ top: indicator_height }">
+    <div id="active-page-indicator" :style="{ top: indicator_top }">
     </div>
     <PageBox v-for="[name, icon] in pages" :icon="icon" @click="current_page = name" ref="page_boxs" />
+    <div id="bottom-buttons">
+      <div></div><!--placeholder because PageBox strips margin-top for nth(2)-->
+      <PageBox id="filters-toggle" :class="{ 'bottom-active': show_filter_window }" icon="filter_alt"
+        @click="show_filter_window = !show_filter_window" />
+      <PageBox icon="sort" />
+    </div>
   </div>
 </template>
 
-<style>
+<style lang="scss">
 #sidebar {
   padding: var(--inner-gutter);
   position: absolute;
@@ -66,10 +79,18 @@ watch(current_page, async function (new_val: Component) {
   transition: top 0.25s;
 }
 
-#push {
+#bottom-buttons {
   position: absolute;
-  width: var(--icon-box-size);
-  height: var(--icon-box-size);
   bottom: var(--inner-gutter);
+  width: inherit;
+
+  * {
+    border-radius: 100%;
+  }
+}
+
+.bottom-active {
+  background-color: var(--palette-highlight);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 </style>

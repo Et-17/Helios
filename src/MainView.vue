@@ -5,11 +5,10 @@ import { ref, type Component, computed } from 'vue';
 
 const props = defineProps<{
   page: Component,
+  filter_window_open: boolean
 }>();
 
-const filter_window_open = ref(true);
-
-const show_filter = computed(() => filter_window_open && props.page == CompanyList);
+const show_filter = computed(() => props.filter_window_open && props.page == CompanyList);
 </script>
 
 <template>

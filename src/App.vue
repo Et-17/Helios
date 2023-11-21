@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { shallowRef, onMounted, type ShallowRef, type Component } from 'vue';
+import { shallowRef, onMounted, type ShallowRef, type Component, ref, type Ref } from 'vue';
 import { update_companies } from './companyManagement';
 import Sidebar from './Sidebar/Sidebar.vue';
 import CompanyList from './CompanyList.vue';
@@ -7,12 +7,14 @@ import MainView from './MainView.vue';
 
 const current_page: ShallowRef<Component> = shallowRef(CompanyList);
 
+const show_filter_window: Ref<boolean> = ref(false);
+
 onMounted(update_companies)
 </script>
 
 <template>
-  <Sidebar @page-change="p => current_page = p" />
-  <MainView :page="current_page" />
+  <Sidebar @page-change="p => current_page = p" @toggle-filters="p => show_filter_window = p" />
+  <MainView :page="current_page" :filter_window_open="show_filter_window" />
 </template>
 
 <style lang="scss">
