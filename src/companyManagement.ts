@@ -12,14 +12,16 @@ export type Company = {
     established: number;
 }
 export const columnkeys: string[] = ["name", "genre", "description", "address", "phone", "revenue", "ticker", "established"]
+// I'm just using this for the dynamic filter input type so I'm using "text"
+// instead of "string" because that's what html uses.
 export const columns: Record<string, string> = {
-    name: "string",
-    genre: "string",
-    description: "string",
-    address: "string",
-    phone: "string",
+    name: "text",
+    genre: "text",
+    description: "text",
+    address: "text",
+    phone: "text",
     revenue: "number",
-    ticker: "string",
+    ticker: "text",
     established: "number"
 }
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { shallowRef, ref, watch } from 'vue';
+import { shallowRef, ref, watch, computed } from 'vue';
 import type { Component, Ref, ShallowRef } from 'vue';
 import PageBox from './PageBox.vue';
 import ComponentTest from '@/ComponentTest.vue';
@@ -26,7 +26,11 @@ var page_nums = new Map<Component, number>(pages.map((val, index) => [val[0], in
 // This stores the vue refs to the sidebar boxes
 const page_boxs: Ref<InstanceType<typeof PageBox>[]> = ref([]);
 
+// This the page thats current selected. Because it's a component we have to use
+// a shallow ref to prevent unneeded deep reactivity.
 const current_page: ShallowRef<Component> = shallowRef(CompanyList);
+
+const indicator_height = computed(() => page_boxs.value[page_nums.get(current_page.value) ?? 0]?.top + 'px');
 
 watch(current_page, async function (new_val: Component) {
   emit('page-change', new_val);
@@ -35,7 +39,7 @@ watch(current_page, async function (new_val: Component) {
 
 <template>
   <div id="sidebar">
-    <div id="active-page-indicator" :style="{ top: page_boxs[page_nums.get(current_page) ?? 0]?.top + 'px' }">
+    <div id="active-page-indicator" :style="{ top: indicator_height }">
     </div>
     <PageBox v-for="[name, icon] in pages" :icon="icon" @click="current_page = name" ref="page_boxs" />
   </div>

@@ -2,23 +2,23 @@
 import { filters, type Company, columnkeys, columns, update_companies } from './companyManagement';
 import { ref, type Ref } from 'vue';
 
-const filterSelectionRef: Ref<HTMLSelectElement | null> = ref(null);
-const operationSelectionRef: Ref<HTMLSelectElement | null> = ref(null);
-const valueSelectionRef: Ref<HTMLInputElement | null> = ref(null);
+const operations = ["=", "<", ">"];
+
+const selected_column: Ref<string> = ref("name");
+const selected_operation: Ref<string> = ref("=");
+const selected_argument: Ref<string> = ref("");
 
 async function addFilter() {
-  const column = filterSelectionRef.value?.value as keyof Company;
-  var value: string | number = valueSelectionRef.value?.value as string;
-  if (columns[column] == "number") {
-    value = Number(value as string);
-  }
+  // if the column the filter is being applied to is a number, then convert the
+  // argument to a number
+  var actual_argument = columns[selected_column.value] == "number" ?
+    Number(selected_argument.value) :
+    selected_argument.value;
 
-  // I could probably get this type stuff working properly but I know it won't
-  // exceed the values of company and stuff so I'm just forcing the type
   filters.value.push({
-    column,
-    name: operationSelectionRef.value?.value as string,
-    value
+    column: selected_column.value as keyof Company,
+    name: selected_operation.value,
+    value: actual_argument
   })
 
   update_companies();
@@ -52,17 +52,18 @@ async function removeFilter(index: number) {
         </tr>
         <tr>
           <td>
-            <select name="newfiltercolumn" id="newfiltercolumn" ref="filterSelectionRef">
+            <select name="newfiltercolumn" id="newfiltercolumn" v-model="selected_column" ref="filterSelectionRef">
               <option :value="column" v-for="column in columnkeys">{{ column }}</option>
             </select>
           </td>
           <td>
-            <select name="newfilteroperation" id="newfilteroperation" ref="operationSelectionRef">
-              <option :value="operation" v-for="operation in ['=', '<', '>']">{{ operation }}</option>
+            <select name="newfilteroperation" id="newfilteroperation" v-model="selected_operation"
+              ref="operationSelectionRef">
+              <option :value="operation" v-for="operation in operations">{{ operation }}</option>
             </select>
           </td>
           <td>
-            <input type="text" name="newfiltervalue" id="newfiltervalue" ref="valueSelectionRef">
+            <input name="newfiltervalue" id="newfiltervalue" v-model="selected_argument" ref="valueSelectionRef">
           </td>
           <td>
             <button class="material-icons" @click="addFilter">add</button>
