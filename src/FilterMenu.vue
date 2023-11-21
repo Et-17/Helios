@@ -19,7 +19,7 @@ async function addFilter() {
     column: selected_column.value as keyof Company,
     name: selected_operation.value,
     value: actual_argument
-  })
+  });
 
   update_companies();
 }
@@ -52,18 +52,17 @@ async function removeFilter(index: number) {
         </tr>
         <tr>
           <td>
-            <select name="newfiltercolumn" id="newfiltercolumn" v-model="selected_column" ref="filterSelectionRef">
+            <select id="newfiltercolumn" v-model="selected_column">
               <option :value="column" v-for="column in columnkeys">{{ column }}</option>
             </select>
           </td>
           <td>
-            <select name="newfilteroperation" id="newfilteroperation" v-model="selected_operation"
-              ref="operationSelectionRef">
+            <select id="newfilteroperation" v-model="selected_operation">
               <option :value="operation" v-for="operation in operations">{{ operation }}</option>
             </select>
           </td>
           <td>
-            <input name="newfiltervalue" id="newfiltervalue" v-model="selected_argument" ref="valueSelectionRef">
+            <input id="newfiltervalue" v-model="selected_argument">
           </td>
           <td>
             <button class="material-icons" @click="addFilter">add</button>
