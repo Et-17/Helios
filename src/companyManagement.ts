@@ -32,6 +32,17 @@ export const shown_columns: Ref<(keyof Company)[]> = ref([
     "established"
 ])
 
+export const frontend_column_names: Record<keyof Company, string> = {
+    "name": "Company Name",
+    "genre": "Industry",
+    "description": "Description",
+    "address": "Address",
+    "phone": "Phone",
+    "revenue": "Revenue",
+    "ticker": "Ticker",
+    "established": "Est."
+}
+
 // This just covers the filters being sent by the components. I've decided to
 // just use Object for the converted filters we're sending to mongo. If we typed
 // those the type gymnastics and DX would be hell. It's just not worth it.
@@ -85,8 +96,8 @@ export async function update_companies() {
     if (filters.value.length == 0) {
         get_companies({});
     } else {
-        // while functional is the messiah i can't figure out the promise stuff
-        // so iterative it is ig
+        // while functional is awesom i can't figure out the promise stuff so
+        // iterative it is ig
         const mongoed_filters: Object[] = []
         for (var i = 0; i < filters.value.length; i++) {
             mongoed_filters.push(await convert_single_filter(filters.value[i]));

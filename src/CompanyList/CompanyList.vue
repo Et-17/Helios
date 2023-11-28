@@ -1,25 +1,12 @@
 <script setup lang="ts">
-import { companies, shown_columns, type Company } from './companyManagement';
-
-// The names I am using in the database aren't exactly client-ready names so
-// this will translate them
-const column_names: Record<keyof Company, string> = {
-  "name": "Company Name",
-  "genre": "Industry",
-  "description": "Description",
-  "address": "Address",
-  "phone": "Phone",
-  "revenue": "Revenue",
-  "ticker": "Ticker",
-  "established": "Est."
-}
+import { companies, shown_columns, frontend_column_names } from '../companyManagement';
 </script>
 
 <template>
   <table class="company-list">
     <thead>
       <tr>
-        <th v-for="column in shown_columns">{{ column_names[column] }}</th>
+        <th v-for="column in shown_columns">{{ frontend_column_names[column] }}</th>
       </tr>
     </thead>
     <tbody>

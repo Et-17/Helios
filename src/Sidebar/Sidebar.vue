@@ -4,7 +4,7 @@ import type { Component, Ref, ShallowRef } from 'vue';
 import PageBox from './PageBox.vue';
 import ComponentTest from '@/ComponentTest.vue';
 import ReportGeneration from '@/ReportGeneration/ReportGeneration.vue';
-import CompanyList from '@/CompanyList.vue';
+import CompanyList from '@/CompanyList/CompanyList.vue';
 
 const emit = defineEmits<{
   (e: 'page-change', page: Component): void

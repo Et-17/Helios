@@ -2,7 +2,7 @@
 import { shallowRef, onMounted, type ShallowRef, type Component, ref, type Ref } from 'vue';
 import { update_companies } from './companyManagement';
 import Sidebar from './Sidebar/Sidebar.vue';
-import CompanyList from './CompanyList.vue';
+import CompanyList from './CompanyList/CompanyList.vue';
 import MainView from './MainView.vue';
 
 const current_page: ShallowRef<Component> = shallowRef(CompanyList);

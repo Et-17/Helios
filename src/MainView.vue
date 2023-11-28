@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import CompanyList from './CompanyList.vue'
-import FilterMenu from './FilterMenu.vue'
+import CompanyList from './CompanyList/CompanyList.vue'
+import FilterMenu from './CompanyList/FilterMenu.vue'
 import { ref, type Component, computed } from 'vue';
 
 const props = defineProps<{

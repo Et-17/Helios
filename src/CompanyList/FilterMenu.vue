@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { filters, type Company, columnkeys, columns, update_companies } from './companyManagement';
+import { filters, type Company, columnkeys, columns, update_companies } from './../companyManagement';
 import { ref, type Ref } from 'vue';
 
 const operations = ["=", "<", ">"];
