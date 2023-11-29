@@ -22,7 +22,7 @@ const show_selector = computed(() => props.selector_window_open && props.page ==
       </KeepAlive>
     </Transition>
   </div>
-  <FilterMenu id="filter-block" :class="{ show_filters: show_filter }" />
+  <FilterMenu id="filter-block" :class="{ show_filters: show_filter, show_selector: show_selector }" />
   <ColumnSelector id="column-selector" :class="{ show_selector: show_selector }" />
 </template>
 
@@ -58,7 +58,7 @@ const show_selector = computed(() => props.selector_window_open && props.page ==
   box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.25);
   overflow-x: hidden;
   overflow-y: scroll;
-  transition: height 1s;
+  transition: height 1s, right 1s;
 
   * {
     transition: opacity 1s;
@@ -67,6 +67,10 @@ const show_selector = computed(() => props.selector_window_open && props.page ==
   &.show_filters {
     opacity: 100;
     height: calc((100vh - var(--outer-gutter) * 2) * 0.382);
+  }
+
+  &.show_selector {
+    right: calc(var(--outer-gutter) * 2 + 200px)
   }
 
   &:not(.show_filters) {
