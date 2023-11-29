@@ -9,6 +9,7 @@ import CompanyList from '@/CompanyList/CompanyList.vue';
 const emit = defineEmits<{
   (e: 'page-change', page: Component): void
   (e: 'toggle-filters', show: boolean): void
+  (e: 'toggle-selector', show: boolean): void
 }>();
 
 // This has all the pages being shown in the sidebar in the format of
@@ -34,6 +35,7 @@ const current_page: ShallowRef<Component> = shallowRef(CompanyList);
 const indicator_top = computed(() => page_boxs.value[page_nums.get(current_page.value) ?? 0]?.top + 'px');
 
 const show_filter_window = ref(false);
+const show_selector_window = ref(false);
 
 watch(current_page, async function (new_val: Component) {
   emit('page-change', new_val);
@@ -41,6 +43,10 @@ watch(current_page, async function (new_val: Component) {
 
 watch(show_filter_window, async function (new_val: boolean) {
   emit('toggle-filters', new_val);
+});
+
+watch(show_selector_window, async function (new_val: boolean) {
+  emit('toggle-selector', new_val);
 })
 </script>
 
@@ -53,7 +59,8 @@ watch(show_filter_window, async function (new_val: boolean) {
       <div></div><!--placeholder because PageBox strips margin-top for nth(2)-->
       <PageBox id="filters-toggle" :class="{ 'bottom-active': show_filter_window }" icon="filter_alt"
         @click="show_filter_window = !show_filter_window" />
-      <PageBox icon="sort" />
+      <PageBox id="selector-toggle" :class="{ 'bottom-active': show_selector_window }" icon="sort"
+        @click="show_selector_window = !show_selector_window" />
     </div>
   </div>
 </template>

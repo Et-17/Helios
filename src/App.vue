@@ -8,13 +8,15 @@ import MainView from './MainView.vue';
 const current_page: ShallowRef<Component> = shallowRef(CompanyList);
 
 const show_filter_window: Ref<boolean> = ref(false);
+const show_selector_window: Ref<boolean> = ref(false);
 
 onMounted(update_companies)
 </script>
 
 <template>
-  <Sidebar @page-change="p => current_page = p" @toggle-filters="p => show_filter_window = p" />
-  <MainView :page="current_page" :filter_window_open="show_filter_window" />
+  <Sidebar @page-change="p => current_page = p" @toggle-filters="p => show_filter_window = p"
+    @toggle-selector="p => show_selector_window = p" />
+  <MainView :page="current_page" :filter_window_open="show_filter_window" :selector_window_open="show_selector_window" />
 </template>
 
 <style lang="scss">

@@ -1,25 +1,29 @@
 <script setup lang="ts">
+import ColumnSelector from './CompanyList/ColumnSelector.vue';
 import CompanyList from './CompanyList/CompanyList.vue'
 import FilterMenu from './CompanyList/FilterMenu.vue'
 import { ref, type Component, computed } from 'vue';
 
 const props = defineProps<{
   page: Component,
-  filter_window_open: boolean
+  filter_window_open: boolean,
+  selector_window_open: boolean,
 }>();
 
 const show_filter = computed(() => props.filter_window_open && props.page == CompanyList);
+const show_selector = computed(() => props.selector_window_open && props.page == CompanyList);
 </script>
 
 <template>
-  <div id="main-block" :class="{ show_filters: show_filter }">
+  <div id="main-block" :class="{ show_filters: show_filter, show_selector: show_selector }">
     <Transition name="pages" mode="out-in">
       <KeepAlive>
         <component :is="page" class="page" />
       </KeepAlive>
     </Transition>
   </div>
-  <FilterMenu id="filter-block" :class="{ show: show_filter }" />
+  <FilterMenu id="filter-block" :class="{ show_filters: show_filter }" />
+  <ColumnSelector id="column-selector" :class="{ show_selector: show_selector }" />
 </template>
 
 <style lang="scss">
@@ -33,11 +37,15 @@ const show_filter = computed(() => props.filter_window_open && props.page == Com
   box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.25);
   overflow-x: hidden;
   overflow-y: scroll;
-  transition: bottom 1s;
+  transition: bottom 1s, right 1s;
 
   &.show_filters {
     // bottom: calc(var(--outer-gutter) * 2 + 100px);
     bottom: calc(var(--outer-gutter) * 1.236 + 38.2vh)
+  }
+
+  &.show_selector {
+    right: calc(var(--outer-gutter) * 2 + 200px)
   }
 }
 
@@ -56,16 +64,46 @@ const show_filter = computed(() => props.filter_window_open && props.page == Com
     transition: opacity 1s;
   }
 
-  &.show {
+  &.show_filters {
     opacity: 100;
     height: calc((100vh - var(--outer-gutter) * 2) * 0.382);
   }
 
-  &:not(.show) {
+  &:not(.show_filters) {
     height: 0px;
   }
 
-  &:not(.show) * {
+  &:not(.show_filters) * {
+    opacity: 0;
+  }
+}
+
+#column-selector {
+  position: absolute;
+  right: var(--outer-gutter);
+  bottom: var(--outer-gutter);
+  top: var(--outer-gutter);
+  // left: calc(var(--icon-box-size) + var(--inner-gutter) * 2 + var(--outer-gutter) * 2);
+  background-color: var(--palette-card);
+  box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.25);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  transition: width 1s;
+
+  * {
+    transition: opacity 1s;
+  }
+
+  &.show_selector {
+    opacity: 100;
+    width: 200px;
+  }
+
+  &:not(.show_selector) {
+    width: 0px;
+  }
+
+  &:not(.show_selector) * {
     opacity: 0;
   }
 }
