@@ -74,6 +74,6 @@ function fancy_sort<T>(a: T, b: T): number {
 
 .company-list tbody tr:hover * {
   background-color: var(--palette-highlight);
-  cursor: pointer;
+  // cursor: pointer;
 }
 </style>
