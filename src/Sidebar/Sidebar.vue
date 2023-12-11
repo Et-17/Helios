@@ -57,9 +57,9 @@ watch(show_selector_window, async function (new_val: boolean) {
     <PageBox v-for="[name, icon] in pages" :icon="icon" @click="current_page = name" ref="page_boxs" />
     <div id="bottom-buttons">
       <div></div><!--placeholder because PageBox strips margin-top for nth(2)-->
-      <PageBox id="filters-toggle" :class="{ 'bottom-active': show_filter_window }" icon="filter_alt"
+      <PageBox id="filters-toggle" :class="{ 'bottom-active': show_filter_window, 'hide': current_page != CompanyList }" icon="filter_alt"
         @click="show_filter_window = !show_filter_window" />
-      <PageBox id="selector-toggle" :class="{ 'bottom-active': show_selector_window }" icon="sort"
+      <PageBox id="selector-toggle" :class="{ 'bottom-active': show_selector_window, 'hide': current_page != CompanyList }" icon="sort"
         @click="show_selector_window = !show_selector_window" />
     </div>
   </div>
@@ -99,5 +99,9 @@ watch(show_selector_window, async function (new_val: boolean) {
 .bottom-active {
   background-color: var(--palette-highlight);
   box-shadow: var(--selector-shadow);
+}
+
+.hide {
+  opacity: 0%;
 }
 </style>

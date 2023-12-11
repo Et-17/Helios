@@ -42,5 +42,13 @@ async function genReportBody() {
 </script>
 
 <template>
-  <button @click="storeReport">Generate Report</button>
+  <div id="report-gen-container">
+    <button @click="storeReport">Generate Report</button>
+  </div>
 </template>
+
+<style>
+#report-gen-container {
+  padding: var(--inner-gutter);
+}
+</style>

@@ -77,5 +77,6 @@ async function removeFilter(index: number) {
 table {
   width: 100%;
   text-align: center;
+  padding: var(--inner-gutter);
 }
 </style>

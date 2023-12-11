@@ -47,6 +47,7 @@ function fancy_sort<T>(a: T, b: T): number {
 <style lang="scss">
 .company-list {
   width: 100%;
+  padding: var(--inner-gutter);
 }
 
 .company-list tr {

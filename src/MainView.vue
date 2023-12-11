@@ -45,7 +45,7 @@ const show_selector = computed(() => props.selector_window_open && props.page ==
   }
 
   &.show_selector {
-    right: calc(var(--outer-gutter) * 2 + 200px)
+    right: calc(var(--outer-gutter) * 2 + 250px)
   }
 }
 
@@ -91,7 +91,7 @@ const show_selector = computed(() => props.selector_window_open && props.page ==
   background-color: var(--palette-card);
   box-shadow: var(--card-shadow);
   overflow-x: hidden;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   transition: width 1s;
 
   * {
@@ -100,7 +100,7 @@ const show_selector = computed(() => props.selector_window_open && props.page ==
 
   &.show_selector {
     opacity: 100;
-    width: 200px;
+    width: 250px;
   }
 
   &:not(.show_selector) {
