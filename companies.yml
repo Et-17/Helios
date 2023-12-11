@@ -80,13 +80,72 @@
   ticker: N/A
   established: 1996
 
-# - name: Goodwill-Suncoast
-# - name: Lifestyle Family Fitness, Inc.
-# - name: St. Petersburg College
-# - name: Danka Holding Co.
-# - name: HSNi LLC
-# - name: USANI Sub, LLC
-# - name: Power Design
+- name: Goodwill-Suncoast
+  genre: charity
+  description: A massive national thrift shop and charity
+  address: >
+    10596 Gandy Blvd N
+    St. Petersburg, FL 33702
+  phone: (727)-523-1512
+  revenue: 7400000000
+  ticker: N/A
+  established: 1902
+
+- name: Lifestyle Family Fitness, Inc.
+  genre: fitness
+  description: A chain gym that offers exercise classes
+  address: >
+    6690 Crosswinds Dr N
+    St. Petersburg, FL 33710
+  phone: (727)-347-7701
+  revenue: 810000000
+  ticker: N/A
+  established: 1982
+
+- name: St. Petersburg College
+  genre: education
+  description: An amazing college
+  address: >
+    3200 34th St S
+    St. Petersburg, FL 33711
+  phone: (727)-341-4500
+  revenue: 20000000
+  ticker: N/A
+  established: 1927
+
+- name: Danka Holding Co.
+  genre: office
+  description: A holding company for Danka Business Systems PLC
+  address: >
+    11201 Danka Circle N
+    St. Petersburg, FL 33716
+  phone: (727)-579-3550
+  revenue: 590000000
+  ticker: DANKY
+  established: 1976
+
+- name: HSNi LLC
+  genre: marketing
+  description: A television channel that sells products
+  address: >
+    1 HSN Drive
+    St. Petersburg, FL 33729
+  phone: (727)-872-1000
+  revenue: 3600000000
+  ticker: HSNI
+  established: 1982
+
+- name: Power Design
+  genre: design
+  description: A design build contractor for developers
+  address: >
+    11600 9th St N
+    St. Petersburg, FL 33716
+  phone: (727)-210-0492
+  revenue: 1000000000
+  ticker: N/A
+  established: 1989
+  
 # - name: PSCU
 # - name: Community Brands
 # - name: Catalina
