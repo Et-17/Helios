@@ -74,7 +74,7 @@ watch(show_selector_window, async function (new_val: boolean) {
   bottom: var(--outer-gutter);
   background-color: var(--palette-card);
   width: var(--icon-box-size);
-  box-shadow: 15px 15px 0px rgb(0, 0, 0, 0.25);
+  box-shadow: var(--card-shadow);
 }
 
 #active-page-indicator {
@@ -82,7 +82,7 @@ watch(show_selector_window, async function (new_val: boolean) {
   width: var(--icon-box-size);
   height: var(--icon-box-size);
   background-color: var(--palette-highlight);
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--selector-shadow);
   transition: top 0.25s;
 }
 
@@ -98,6 +98,6 @@ watch(show_selector_window, async function (new_val: boolean) {
 
 .bottom-active {
   background-color: var(--palette-highlight);
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--selector-shadow);
 }
 </style>

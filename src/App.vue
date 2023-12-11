@@ -34,6 +34,8 @@ onMounted(update_companies)
   --inner-gutter: 20px;
   --icon-box-size: 72px;
   --icon-size: 48px;
+  --card-shadow: 15px 15px 20px rgba(0, 0, 0, 0.25);
+  --selector-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
   color: rgb(30, 30, 30);
 }
 </style>

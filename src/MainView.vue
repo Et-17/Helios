@@ -34,9 +34,9 @@ const show_selector = computed(() => props.selector_window_open && props.page ==
   bottom: calc(var(--outer-gutter));
   left: calc(var(--icon-box-size) + var(--inner-gutter) * 2 + var(--outer-gutter) * 2);
   background-color: var(--palette-card);
-  box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--card-shadow);
   overflow-x: hidden;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   transition: bottom 1s, right 1s;
 
   &.show_filters {
@@ -55,7 +55,7 @@ const show_selector = computed(() => props.selector_window_open && props.page ==
   bottom: var(--outer-gutter);
   left: calc(var(--icon-box-size) + var(--inner-gutter) * 2 + var(--outer-gutter) * 2);
   background-color: var(--palette-card);
-  box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--card-shadow);
   overflow-x: hidden;
   overflow-y: scroll;
   transition: height 1s, right 1s;
@@ -89,7 +89,7 @@ const show_selector = computed(() => props.selector_window_open && props.page ==
   top: var(--outer-gutter);
   // left: calc(var(--icon-box-size) + var(--inner-gutter) * 2 + var(--outer-gutter) * 2);
   background-color: var(--palette-card);
-  box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--card-shadow);
   overflow-x: hidden;
   overflow-y: scroll;
   transition: width 1s;
