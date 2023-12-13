@@ -17,7 +17,7 @@ const emit = defineEmits<{
 const pages: [Component, string][] = [
   [CompanyList, 'flare'],
   [ReportGeneration, 'summarize'],
-  [ComponentTest, 'add']
+  // [ComponentTest, 'add']
 ]
 
 // Using refs in v-for isn't guarenteed to give you the correct ordering so I

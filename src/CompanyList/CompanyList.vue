@@ -38,7 +38,7 @@ function fancy_sort<T>(a: T, b: T): number {
     </thead>
     <tbody>
       <tr v-for="company in companies">
-        <td v-for="column in sort(shown_columns)">{{ company[column] }}</td>
+        <td v-for="column in sort(shown_columns)">{{ column == "revenue" ? company[column].toLocaleString() : company[column] }}</td>
       </tr>
     </tbody>
   </table>
