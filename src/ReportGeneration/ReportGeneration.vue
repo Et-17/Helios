@@ -43,9 +43,9 @@ async function genReportBody() {
 
 <template>
   <div id="report-gen-container">
-    <p id="reports-label">
-      Reports
-    </p>
+    <h1 id="reports-label">
+      Generate Report
+    </h1>
     <p id="reports-body">
       This will produce a CSV of all the company data being shown on the company list. If you would like the report to
       have different data, please change the filters or column settings.
@@ -62,12 +62,10 @@ async function genReportBody() {
 #reports-label {
   font-family: 'Young Serif', serif;
   font-style: bold;
-  font-size: 1.1rem;
-  line-height: 2;
+  font-size: 1.5rem;
 }
 
 #reports-body {
   font-family: 'Montserrat', sans-serif;
-  line-height: 2;
 }
 </style>

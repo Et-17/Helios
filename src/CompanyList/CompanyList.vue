@@ -30,22 +30,31 @@ function fancy_sort<T>(a: T, b: T): number {
 </script>
 
 <template>
-  <table class="company-list">
-    <thead>
-      <tr>
-        <th v-for="column in sort(shown_columns)">{{ frontend_column_names[column] }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="company in companies">
-        <td v-for="column in sort(shown_columns)">{{ column == "revenue" ? company[column].toLocaleString() :
-          company[column] }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div>
+    <h1 id="company-list-header">Companies</h1>
+    <table class="company-list">
+      <thead>
+        <tr>
+          <th v-for="column in sort(shown_columns)">{{ frontend_column_names[column] }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="company in companies">
+          <td v-for="column in sort(shown_columns)">{{ column == "revenue" ? company[column].toLocaleString() :
+            company[column] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <style lang="scss">
+#company-list-header {
+  font-family: 'Young Serif', serif;
+  font-style: bold;
+  font-size: 1.5rem;
+}
+
 .company-list {
   width: 100%;
 }
@@ -56,7 +65,7 @@ function fancy_sort<T>(a: T, b: T): number {
 
   th {
     font-family: 'Young Serif', serif;
-    font-style: bold;
+    font-style: normal;
     font-size: 1.1rem;
     line-height: 2;
   }
@@ -74,6 +83,5 @@ function fancy_sort<T>(a: T, b: T): number {
 
 .company-list tbody tr:hover * {
   background-color: var(--palette-highlight);
-  // cursor: pointer;
 }
 </style>

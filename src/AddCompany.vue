@@ -32,8 +32,8 @@ async function submit() {
 
 <template>
   <div id="add-container">
-    <h1>Add Company</h1>
-    <form @submit.prevent="submit">
+    <h1 id="add-company-header">Add Company</h1>
+    <form @submit.prevent="submit" id="add-form">
       <label>Name</label><br />
       <input type="text" v-model="name" name="name"><br /><br />
 
@@ -64,4 +64,13 @@ async function submit() {
 </template>
 
 <style lang="scss">
+#add-form {
+  font-family: 'Montserrat', sans-serif;
+}
+
+#add-company-header {
+  font-family: 'Young Serif', serif;
+  font-style: bold;
+  font-size: 1.5rem;
+}
 </style>
