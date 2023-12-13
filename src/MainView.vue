@@ -18,7 +18,7 @@ const show_selector = computed(() => props.selector_window_open && props.page ==
   <div id="main-block" :class="{ show_filters: show_filter, show_selector: show_selector }">
     <Transition name="pages" mode="out-in">
       <KeepAlive>
-        <component :is="page" class="page" />
+        <component :is="page" />
       </KeepAlive>
     </Transition>
   </div>
@@ -29,6 +29,7 @@ const show_selector = computed(() => props.selector_window_open && props.page ==
 <style lang="scss">
 #main-block {
   position: absolute;
+  padding: var(--inner-gutter);
   top: var(--outer-gutter);
   right: var(--outer-gutter);
   bottom: calc(var(--outer-gutter));
@@ -105,13 +106,6 @@ const show_selector = computed(() => props.selector_window_open && props.page ==
   &:not(.show_selector) * {
     opacity: 0;
   }
-}
-
-.page {
-  position: absolute;
-  width: 100%;
-  top: 0%;
-  text-align: center;
 }
 
 .pages-enter-active,

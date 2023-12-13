@@ -17,7 +17,7 @@ const emit = defineEmits<{
 const pages: [Component, string][] = [
   [CompanyList, 'flare'],
   [ReportGeneration, 'summarize'],
-  // [ComponentTest, 'add']
+  [ComponentTest, 'add']
 ]
 
 // Using refs in v-for isn't guarenteed to give you the correct ordering so I
@@ -57,9 +57,10 @@ watch(show_selector_window, async function (new_val: boolean) {
     <PageBox v-for="[name, icon] in pages" :icon="icon" @click="current_page = name" ref="page_boxs" />
     <div id="bottom-buttons">
       <div></div><!--placeholder because PageBox strips margin-top for nth(2)-->
-      <PageBox id="filters-toggle" :class="{ 'bottom-active': show_filter_window, 'hide': current_page != CompanyList }" icon="filter_alt"
-        @click="show_filter_window = !show_filter_window" />
-      <PageBox id="selector-toggle" :class="{ 'bottom-active': show_selector_window, 'hide': current_page != CompanyList }" icon="sort"
+      <PageBox id="filters-toggle" :class="{ 'bottom-active': show_filter_window, 'hide': current_page != CompanyList }"
+        icon="filter_alt" @click="show_filter_window = !show_filter_window" />
+      <PageBox id="selector-toggle"
+        :class="{ 'bottom-active': show_selector_window, 'hide': current_page != CompanyList }" icon="sort"
         @click="show_selector_window = !show_selector_window" />
     </div>
   </div>

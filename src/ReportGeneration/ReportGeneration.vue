@@ -47,7 +47,8 @@ async function genReportBody() {
       Reports
     </p>
     <p id="reports-body">
-      This will produce a CSV of all the company data being shown on the company list. If you would like the report to have different data, please change the filters or column settings.
+      This will produce a CSV of all the company data being shown on the company list. If you would like the report to
+      have different data, please change the filters or column settings.
     </p>
     <button @click="storeReport">Generate Report</button>
   </div>
@@ -55,9 +56,7 @@ async function genReportBody() {
 
 <style lang="scss">
 #report-gen-container {
-  padding: var(--inner-gutter);
   width: 45vw;
-  text-align: left;
 }
 
 #reports-label {
