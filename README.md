@@ -1,5 +1,5 @@
 # Helios
-A great way to organize local businesses
+A great way to organize local businesses. Run it by double clicking `helios.exe`. No install is needed, it will just run. Windows might say that it is an untrusted or unsafe file because it hasn't seen it before, so just click "Run Anyway".
 
 ## Architecture
 
