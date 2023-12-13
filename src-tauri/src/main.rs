@@ -12,7 +12,11 @@ fn main() {
 
     tauri::Builder::default()
         .manage(client)
-        .invoke_handler(tauri::generate_handler![greet, database::get_companies])
+        .invoke_handler(tauri::generate_handler![
+            greet,
+            database::get_companies,
+            database::upload_company
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

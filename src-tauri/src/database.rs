@@ -24,3 +24,20 @@ pub async fn get_companies(
 
     Ok(result)
 }
+
+// This allows us to submit new companies
+#[tauri::command]
+pub async fn upload_company(
+    client: tauri::State<'_, Client>,
+    company: bson::Document,
+) -> Result<(), ()> {
+    println!("{}", company);
+    let db = client.database("helios");
+    let companies_collection = db.collection::<Document>("companies");
+    companies_collection
+        .insert_one(company.clone(), None)
+        .await
+        .unwrap();
+
+    Ok(())
+}

@@ -61,6 +61,11 @@ export async function get_companies(filters: { $and?: Object[] }) {
         .then((c: Company[]) => companies.value = c);
 }
 
+// This is just a wrapper to make it look nice
+export async function add_company(company: Company) {
+    await invoke<Company[]>('upload_company', { company: company });
+}
+
 export async function convert_single_filter(filter: Filter): Promise<Object> {
     var mongodb_operation_code = "";
     switch (filter.name) {
