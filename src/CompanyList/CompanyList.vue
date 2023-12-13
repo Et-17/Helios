@@ -57,6 +57,7 @@ function fancy_sort<T>(a: T, b: T): number {
 
 .company-list {
   width: 100%;
+  border-collapse:collapse;
 }
 
 .company-list tr {
