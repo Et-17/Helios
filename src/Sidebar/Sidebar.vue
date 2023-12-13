@@ -2,7 +2,7 @@
 import { shallowRef, ref, watch, computed } from 'vue';
 import type { Component, Ref, ShallowRef } from 'vue';
 import PageBox from './PageBox.vue';
-import ComponentTest from '@/ComponentTest.vue';
+import AddCompany from '@/AddCompany.vue';
 import ReportGeneration from '@/ReportGeneration/ReportGeneration.vue';
 import CompanyList from '@/CompanyList/CompanyList.vue';
 
@@ -17,7 +17,7 @@ const emit = defineEmits<{
 const pages: [Component, string][] = [
   [CompanyList, 'flare'],
   [ReportGeneration, 'summarize'],
-  [ComponentTest, 'add']
+  [AddCompany, 'add']
 ]
 
 // Using refs in v-for isn't guarenteed to give you the correct ordering so I

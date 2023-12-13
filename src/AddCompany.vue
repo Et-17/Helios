@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { add_company } from './companyManagement';
+import { add_company, update_companies } from './companyManagement';
 import { message } from '@tauri-apps/api/dialog';
 
 const name = ref("");
@@ -13,8 +13,6 @@ const ticker = ref("");
 const established = ref(0);
 
 async function submit() {
-  console.log("starting submission");
-
   await add_company({
     name: name.value,
     genre: genre.value,
@@ -27,13 +25,15 @@ async function submit() {
   });
 
   await message(`Successfully submitted company ${name.value} to the database`, { title: 'Added Company', type: 'info' });
+
+  await update_companies();
 }
 </script>
 
 <template>
   <div id="add-container">
-    <h1>Add</h1>
-    <form href="#">
+    <h1>Add Company</h1>
+    <form @submit.prevent="submit">
       <label>Name</label><br />
       <input type="text" v-model="name" name="name"><br /><br />
 
@@ -58,8 +58,7 @@ async function submit() {
       <label>Established</label><br>
       <input type="number" v-model="established" name="established"><br><br>
 
-      <button type="submit" onsubmit.prevent="(e: Event) => { e.preventDefault(); console.log('hi') }">Add
-        Company</button>
+      <button type="submit">Add Company</button>
     </form>
   </div>
 </template>
