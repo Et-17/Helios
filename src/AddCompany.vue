@@ -32,7 +32,7 @@ async function submit() {
 
 <template>
   <div id="add-container">
-    <h1 id="add-company-header">Add Company</h1>
+    <h1 id="add-company-header">Add Company</h1><br>
     <form @submit.prevent="submit" id="add-form">
       <label>Name</label><br />
       <input type="text" v-model="name" name="name"><br /><br />

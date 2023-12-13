@@ -31,7 +31,7 @@ function fancy_sort<T>(a: T, b: T): number {
 
 <template>
   <div>
-    <h1 id="company-list-header">Companies</h1>
+    <h1 id="company-list-header">Companies</h1><br>
     <table class="company-list">
       <thead>
         <tr>

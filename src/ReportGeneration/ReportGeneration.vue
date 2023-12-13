@@ -45,7 +45,7 @@ async function genReportBody() {
   <div id="report-gen-container">
     <h1 id="reports-label">
       Generate Report
-    </h1>
+    </h1><br>
     <p id="reports-body">
       This will produce a CSV of all the company data being shown on the company list. If you would like the report to
       have different data, please change the filters or column settings.
