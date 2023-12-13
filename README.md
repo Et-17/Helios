@@ -5,7 +5,7 @@ A great way to organize local businesses
 
 Helios was built using Tauri with a Vue frontend. By using Tauri, I am able to employ web design techniques to create a beautiful app, as it essential runs your application as a website. Further, in the future I am able to very easily port it to the browser. All I would need to do is change how it interacts with MongoDB's API. Unlike its competitor Electron, however, it uses Rust for the backend, making it much faster, safer, and smaller. You can find the Rust code in `src-tauri`.
 
-For the frontend I used the web framework Vue. Vue enforces Single File Components, which keeps everything nice and readable. Using a web framework much simplifies web app design and strips out almost all of the normally overwhelming redundant code when using raw HTML/CSS and creates an incredibly fluid and reactive app. You can find the Vue code in `src`.
+For the frontend I used the web framework Vue. Vue enforces Single File Components, which keeps everything nice and readable. Using a web framework much simplifies web app design and strips out almost all of the normally overwhelming redundant code when using raw HTML/CSS and creates an incredibly fluid and reactive app. I then paired it with Typescript, which is a super set of Javascript that allows strong typing to drastically reduce bugs and allow much more IDE integration for more efficient development. You can find the Vue code in `src`.
 
 I use the cloud service MongoDB Atlas to store the companies, ensuring that you can access your data from wherever you are and that costs will stay low as I don't have to maintain my own server. Filtering is done by the MongoDB database, taking advantage of the years of intense optimizations they have done.
 
@@ -21,6 +21,10 @@ If you click the button right above it with the funnel, you will open the filter
 
 ### Report Generation
 
-Clicking on the piece of paper on the siebar will switch to the report genreation page. This page will export all of thec companies being shown on the company list, including all of the filters and column toggling you have applied, to a CSV file that can be used in all sorts of spreadsheet applications such as Excel.
+Clicking on the piece of paper on the sidebar will switch to the report generation page. This page will export all of thec companies being shown on the company list, including all of the filters and column toggling you have applied, to a CSV file that can be used in all sorts of spreadsheet applications such as Excel.
 
 The names that are shown on the company list are not the names that the database uses but rather much nicer looking names. Database names can't easily have things such as punctuation and spaces, so its much easier to have different names for the database. However, the same rules that make it easier to use names in databases also make those names much easier for analyzing a CSV file, so I use the actual database names when exporting.
+
+### Adding a Company
+
+Of course no data store is complete without the ability to add data. If you click on the plus Helios will switch to the company adding page. This just requires you to put in some data about the company, and then press either the Add Company button or press enter. If everything was successful, Helios will display a message to that effect. The company list will automatically refresh to show you the new company that you have added. All of the text fields are fully Unicode compatible so people of all languages can use Helios.
