@@ -36,7 +36,7 @@ async function genReport() {
 // return the body of a csv report as a string
 async function genReportBody() {
   return companies.value
-    .map(company => shown_columns.value.map(column => company[column]).join(","))
+    .map(company => shown_columns.value.map(column => "\"" + company[column] + "\"").join(","))
     .join("\n");
 }
 </script>
