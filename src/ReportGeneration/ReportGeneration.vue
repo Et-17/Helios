@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { companies, shown_columns } from './../companyManagement';
+import { show } from '@tauri-apps/api/app';
+import { companies, shown_columns, frontend_column_names } from './../companyManagement';
 import { save, message } from '@tauri-apps/api/dialog';
 import { BaseDirectory, writeTextFile } from '@tauri-apps/api/fs';
+import { ref } from 'vue';
 
 // stores a csv report to a file
 async function storeReport() {
@@ -28,9 +30,19 @@ async function storeReport() {
   console.log("Done");
 }
 
+const human_readable_headers = ref(false);
+
 // returns the report as a csv string
 async function genReport() {
-  return shown_columns.value.join(",") + "\n" + (await genReportBody());
+  return (await genReportHeader()) + "\n" + (await genReportBody());
+}
+
+async function genReportHeader() {
+  if (human_readable_headers.value) {
+    return shown_columns.value.map(column => "\"" + frontend_column_names[column] + "\"").join(",");
+  } else {
+    return shown_columns.value.map(column => "\"" + column + "\"").join(",");
+  }
 }
 
 // return the body of a csv report as a string
@@ -50,6 +62,11 @@ async function genReportBody() {
       This will produce a CSV of all the company data being shown on the company list. If you would like the report to
       have different data, please change the filters or column settings.
     </p>
+    <br>
+    <input type="checkbox" name="header-type" v-model="human_readable_headers"><label id="header-type-label"
+      for="header-type">Use human readable names</label>
+    <br>
+    <br>
     <button @click="storeReport">Generate Report</button>
   </div>
 </template>
@@ -66,6 +83,10 @@ async function genReportBody() {
 }
 
 #reports-body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+#header-type-label {
   font-family: 'Montserrat', sans-serif;
 }
 </style>
