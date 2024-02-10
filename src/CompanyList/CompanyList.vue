@@ -27,6 +27,22 @@ function fancy_sort<T>(a: T, b: T): number {
     return 0;
   }
 }
+
+// Some of the columns need to be localized
+function localize_data(data: string | number, column: string): string {
+  switch (column) {
+    case "genre":
+      let lowercase_genre = data.toString();
+      return lowercase_genre[0].toLocaleUpperCase() + lowercase_genre.slice(1);
+    case "revenue":
+      let formatter = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' });
+      return formatter.format(data as number);
+    case "ticker":
+      return data == "N/A" ? "" : data as string;
+    default:
+      return data.toString();
+  }
+}
 </script>
 
 <template>
@@ -40,8 +56,7 @@ function fancy_sort<T>(a: T, b: T): number {
       </thead>
       <tbody>
         <tr v-for="company in companies">
-          <td v-for="column in sort(shown_columns)">{{ column == "revenue" ? company[column].toLocaleString() :
-            company[column] }}</td>
+          <td v-for="column in sort(shown_columns)">{{ localize_data(company[column], column) }}</td>
         </tr>
       </tbody>
     </table>
@@ -57,7 +72,7 @@ function fancy_sort<T>(a: T, b: T): number {
 
 .company-list {
   width: 100%;
-  border-collapse:collapse;
+  border-collapse: collapse;
 }
 
 .company-list tr {
