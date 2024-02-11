@@ -17,9 +17,9 @@ const show_selector = computed(() => props.selector_window_open && props.page ==
 <template>
   <div id="main-block" :class="{ show_filters: show_filter, show_selector: show_selector }">
     <Transition name="pages" mode="out-in">
-      <KeepAlive>
-        <component :is="page" />
-      </KeepAlive>
+      <!-- <KeepAlive> -->
+      <component :is="page" />
+      <!-- </KeepAlive> -->
     </Transition>
   </div>
   <FilterMenu id="filter-block" :class="{ show_filters: show_filter, show_selector: show_selector }" />

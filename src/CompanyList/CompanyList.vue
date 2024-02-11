@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { companies, shown_columns, frontend_column_names } from '../companyManagement';
+import { use_human_readable_column_names, use_human_readable_data } from '../Settings/settingsManagement';
 
 // const sorted_shown_columns = computed(shown_columns.value.sort);
 
@@ -51,12 +52,16 @@ function localize_data(data: string | number, column: string): string {
     <table class="company-list">
       <thead>
         <tr>
-          <th v-for="column in sort(shown_columns)">{{ frontend_column_names[column] }}</th>
+          <th v-for="column in sort(shown_columns)">{{ use_human_readable_column_names ?
+            frontend_column_names[column] :
+            column }}</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="company in companies">
-          <td v-for="column in sort(shown_columns)">{{ localize_data(company[column], column) }}</td>
+          <td v-for="column in sort(shown_columns)">{{ use_human_readable_data ? localize_data(company[column],
+            column) :
+            company[column] }}</td>
         </tr>
       </tbody>
     </table>

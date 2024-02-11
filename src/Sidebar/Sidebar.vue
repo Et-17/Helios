@@ -5,6 +5,7 @@ import PageBox from './PageBox.vue';
 import AddCompany from '@/AddCompany.vue';
 import ReportGeneration from '@/ReportGeneration/ReportGeneration.vue';
 import CompanyList from '@/CompanyList/CompanyList.vue';
+import Settings from '../Settings/Settings.vue';
 
 const emit = defineEmits<{
   (e: 'page-change', page: Component): void
@@ -17,7 +18,8 @@ const emit = defineEmits<{
 const pages: [Component, string][] = [
   [CompanyList, 'flare'],
   [ReportGeneration, 'summarize'],
-  [AddCompany, 'add']
+  [AddCompany, 'add'],
+  [Settings, 'settings']
 ]
 
 // Using refs in v-for isn't guarenteed to give you the correct ordering so I
