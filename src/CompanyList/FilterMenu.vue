@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { filters, type Company, columnkeys, columns, update_companies } from './../companyManagement';
 import { ref, type Ref } from 'vue';
+import { vHelpText } from '../Help/help';
 
 const operations = ["=", "<", ">"];
 
@@ -52,17 +53,20 @@ async function removeFilter(index: number) {
         </tr>
         <tr>
           <td>
-            <select id="newfiltercolumn" v-model="selected_column">
+            <select id="newfiltercolumn" v-model="selected_column"
+              v-help-text="{ id: 'filter-column-select', text: 'The column that the filter is testing. These are the raw column names used in the database. The correspondences should be pretty clear, but if you need you can disable the column formatting in settings.' }">
               <option :value="column" v-for="column in columnkeys">{{ column }}</option>
             </select>
           </td>
           <td>
-            <select id="newfilteroperation" v-model="selected_operation">
+            <select id="newfilteroperation" v-model="selected_operation"
+              v-help-text="{ id: 'filter-operation-select', text: 'The actual test being done by the filter. For example, if you select > then it only show data that is greater than the filter\' value' }">
               <option :value="operation" v-for="operation in operations">{{ operation }}</option>
             </select>
           </td>
           <td>
-            <input id="newfiltervalue" v-model="selected_argument">
+            <input id="newfiltervalue" v-model="selected_argument"
+              v-help-text="{ id: 'filter-value-input', text: 'The argument to the filter. For example, if you selected greater than, then this will be the number the data has to be greater than. It uses the raw database values and not the formatted ones, and you can disable data formatting in settings to see those if you need.' }">
           </td>
           <td>
             <button class="material-icons" @click="addFilter">add</button>

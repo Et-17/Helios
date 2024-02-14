@@ -13,14 +13,10 @@ type UnmountHelpBinding = { arg: any, modifiers: any, value: any, oldValue: { id
 
 export const vHelpText = {
     mounted(el: HTMLElement, binding: MountHelpBinding) {
-        console.log(binding);
         elements_with_help_text[binding.value.id] = [binding.value.text, el];
     },
 
     beforeUnmount(el: HTMLElement, binding: MountHelpBinding) {
-        console.log(elements_with_help_text);
-        console.log("binding");
-        console.log(binding.value);
         delete elements_with_help_text[binding.value.id];
     }
 }

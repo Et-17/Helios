@@ -60,7 +60,8 @@ async function genReportBody() {
     </h1><br>
     <p id="reports-body">
       This will produce a CSV of all the company data being shown on the company list. If you would like the report to
-      have different data, please change the filters or column settings.
+      have different data, please change the filters or column settings. The report will contain the raw values as they
+      are stored in the database adn will not apply any formatting to them.
     </p>
     <br>
     <input type="checkbox" name="header-type" v-model="human_readable_headers"><label id="header-type-label"

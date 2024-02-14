@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, type Ref, onMounted } from 'vue';
+import { ref, computed, type Ref, onMounted, onUnmounted } from 'vue';
 import { elements_with_help_text } from './help';
 
 const current_texts: Ref<[string, HTMLElement][]> = ref([]);
@@ -9,9 +9,15 @@ async function refresh_help() {
   current_texts.value = []
   current_page_num.value = 0
   for (let key in elements_with_help_text) {
+    console.log(elements_with_help_text[key][1].style.opacity.startsWith("0"));
     current_texts.value.push(elements_with_help_text[key]);
+    // if (elements_with_help_text[key][1].style.opacity != "0") {
+    //   current_texts.value.push(elements_with_help_text[key]);
+    // }
   }
-  update_cursor(current_texts.value[current_page_num.value][1], current_texts.value[current_page_num.value][1]);
+  if (current_texts.value.length > 0) {
+    focus_elem(current_texts.value[current_page_num.value][1]);
+  }
 }
 
 async function move_cursor_up() {
@@ -29,14 +35,24 @@ async function move_cursor_down() {
 }
 
 async function update_cursor(old_elem: HTMLElement, new_elem: HTMLElement) {
-  old_elem.style.border = "";
-  old_elem.style.borderStyle = "";
-  new_elem.style.border = "10px var(--palette-help)";
-  new_elem.style.borderRadius = "5px";
-  new_elem.style.borderStyle = "solid"
+  clear_elem(old_elem);
+  focus_elem(new_elem);
+}
+
+async function clear_elem(elem: HTMLElement) {
+  elem.style.border = "";
+  elem.style.borderRadius = "0px";
+  elem.style.borderStyle = "";
+}
+
+async function focus_elem(elem: HTMLElement) {
+  elem.style.border = "10px var(--palette-help)";
+  elem.style.borderRadius = "5px";
+  elem.style.borderStyle = "solid";
 }
 
 onMounted(refresh_help);
+onUnmounted(async function () { await clear_elem(current_texts.value[current_page_num.value][1]) });
 </script>
 
 <template>
