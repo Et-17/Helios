@@ -3,6 +3,7 @@ import ColumnSelector from './CompanyList/ColumnSelector.vue';
 import CompanyList from './CompanyList/CompanyList.vue'
 import FilterMenu from './CompanyList/FilterMenu.vue'
 import { ref, type Component, computed } from 'vue';
+import { vHelpText } from './Help/help';
 
 const props = defineProps<{
   page: Component,

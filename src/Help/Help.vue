@@ -2,6 +2,10 @@
 import { ref, computed, type Ref, onMounted, onUnmounted } from 'vue';
 import { elements_with_help_text } from './help';
 
+const emit = defineEmits<{
+  (e: 'exit'): void
+}>();
+
 const current_texts: Ref<[string, HTMLElement][]> = ref([]);
 const current_page_num: Ref<number> = ref(0);
 
@@ -9,11 +13,11 @@ async function refresh_help() {
   current_texts.value = []
   current_page_num.value = 0
   for (let key in elements_with_help_text) {
-    console.log(elements_with_help_text[key][1].style.opacity.startsWith("0"));
-    current_texts.value.push(elements_with_help_text[key]);
-    // if (elements_with_help_text[key][1].style.opacity != "0") {
-    //   current_texts.value.push(elements_with_help_text[key]);
-    // }
+    let style = window.getComputedStyle(elements_with_help_text[key][1]);
+    let opacity = style.getPropertyValue('opacity');
+    if (Number(opacity) > 0) {
+      current_texts.value.push(elements_with_help_text[key]);
+    }
   }
   if (current_texts.value.length > 0) {
     focus_elem(current_texts.value[current_page_num.value][1]);
@@ -52,7 +56,11 @@ async function focus_elem(elem: HTMLElement) {
 }
 
 onMounted(refresh_help);
-onUnmounted(async function () { await clear_elem(current_texts.value[current_page_num.value][1]) });
+onUnmounted(async function () {
+  if (current_texts.value.length > 0) {
+    await clear_elem(current_texts.value[current_page_num.value][1]);
+  }
+});
 </script>
 
 <template>
@@ -60,8 +68,8 @@ onUnmounted(async function () { await clear_elem(current_texts.value[current_pag
     <p>
       {{ (current_texts[current_page_num] ?? [""])[0] }}
     </p>
-    <button class="help-menu-button" @click="refresh_help">
-      Refresh
+    <button class="help-menu-button" @click="$emit('exit')">
+      Exit
     </button>
     <button class="help-menu-button" @click="move_cursor_up">
       &gt;

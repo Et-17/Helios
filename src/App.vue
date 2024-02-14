@@ -19,7 +19,7 @@ onMounted(update_companies)
   <Sidebar @page-change="p => current_page = p" @toggle-filters="p => show_filter_window = p"
     @toggle-selector="p => show_selector_window = p" @toggle-help-menu="p => show_help_menu = p" />
   <MainView :page="current_page" :filter_window_open="show_filter_window" :selector_window_open="show_selector_window" />
-  <Help v-if="show_help_menu" />
+  <Help v-if="show_help_menu" @exit="() => { show_help_menu = false; show_filter_window = false }" />
 </template>
 
 <style lang="scss">

@@ -6,6 +6,7 @@ import AddCompany from '@/AddCompany.vue';
 import ReportGeneration from '@/ReportGeneration/ReportGeneration.vue';
 import CompanyList from '@/CompanyList/CompanyList.vue';
 import Settings from '../Settings/Settings.vue';
+import { vHelpText } from '@/Help/help';
 
 const emit = defineEmits<{
   (e: 'page-change', page: Component): void
@@ -66,10 +67,12 @@ watch(show_help_menu, async function (new_val: boolean) {
     <div id="bottom-buttons">
       <div></div><!--placeholder because PageBox strips margin-top for nth(2)-->
       <PageBox id="filters-toggle" :class="{ 'bottom-active': show_filter_window, 'hide': current_page != CompanyList }"
-        icon="filter_alt" @click="show_filter_window = !show_filter_window" />
+        icon="filter_alt" @click="show_filter_window = !show_filter_window"
+        v-help-text="{ id: 'filter-toggle-button', text: 'This button toggles the filter menu.' }" />
       <PageBox id="selector-toggle"
         :class="{ 'bottom-active': show_selector_window, 'hide': current_page != CompanyList }" icon="sort"
-        @click="show_selector_window = !show_selector_window" />
+        @click="show_selector_window = !show_selector_window"
+        v-help-text="{ id: 'column-toggle-button', text: 'This button toggles the menu that allows you to customize which columns are displayed on the company list.' }" />
       <PageBox id="help-toggle" :class="{ 'bottom-active': show_help_menu }" icon="question_mark"
         @click="show_help_menu = !show_help_menu" />
     </div>
