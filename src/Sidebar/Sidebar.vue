@@ -61,7 +61,7 @@ watch(show_help_menu, async function (new_val: boolean) {
 
 <template>
   <div id="sidebar">
-    <div id="active-page-indicator" :style="{ top: indicator_top }">
+    <div id="active-page-indicator" :style="{ top: `calc(${indicator_top} - 1 * var(--inner-gutter))` }">
     </div>
     <PageBox v-for="[name, icon] in pages" :icon="icon" @click="current_page = name" ref="page_boxs" />
     <hr id="button-section-division">
@@ -104,10 +104,11 @@ watch(show_help_menu, async function (new_val: boolean) {
 
 #active-page-indicator {
   position: absolute;
-  width: var(--icon-box-size);
-  height: var(--icon-box-size);
+  width: calc(var(--icon-box-size) + 2 * var(--inner-gutter));
+  left: 0px;
+  height: calc(var(--icon-box-size) + 2 * var(--inner-gutter));
   background-color: var(--palette-highlight);
-  box-shadow: var(--selector-shadow);
+  // box-shadow: var(--selector-shadow);
   transition: top 0.25s;
 }
 
@@ -118,11 +119,15 @@ watch(show_help_menu, async function (new_val: boolean) {
 
   * {
     border-radius: 100%;
+    background-color: var(--palette-highlight);
   }
 }
 
 .bottom-active {
-  background-color: var(--palette-highlight);
+  background-color: var(--palette-highlight-2) !important;
+  * {
+    background-color: var(--palette-highlight-2) !important;
+  }
   box-shadow: var(--selector-shadow);
 }
 

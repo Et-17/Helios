@@ -37,6 +37,7 @@ onMounted(update_companies)
   --palette-card: #FFECB3;
   // --palette-highlight: #FFB3D9;
   --palette-highlight: #FFFFB3;
+  --palette-highlight-2: #ECFFB3;
   // --palette-help: #B3FFD9;
   --palette-help: #C6FFB3;
   --outer-gutter: 40px;

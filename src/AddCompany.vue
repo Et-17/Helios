@@ -35,28 +35,28 @@ async function submit() {
     <h1 id="add-company-header">Add Company</h1><br>
     <form @submit.prevent="submit" id="add-form">
       <label>Name</label><br />
-      <input type="text" v-model="name" name="name"><br /><br />
+      <input type="text" v-model="name" name="name" placeholder="Example, LLC."><br /><br />
 
       <label>Industry</label><br />
-      <input type="text" v-model="genre" name="genre"><br /><br />
+      <input type="text" v-model="genre" name="genre" placeholder="manufacturing"><br /><br />
 
       <label>Description</label><br />
-      <textarea v-model="description" name="description"></textarea><br /><br />
+      <textarea v-model="description" name="description" placeholder="This is an example company"></textarea><br /><br />
 
       <label>Address (please split lines)</label><br />
-      <textarea v-model="address" name="address"></textarea><br /><br />
+      <textarea v-model="address" name="address" placeholder="1234 Example St. N&NewLine;St. Petersburg, Florida 33711"></textarea><br /><br />
 
       <label>Phone</label><br />
-      <input type="text" v-model="phone" name="phone"><br><br>
+      <input type="text" v-model="phone" name="phone" placeholder="(123) 456-789"><br><br>
 
       <label>Revenue</label><br>
-      <input type="number" v-model="revenue" name="revenue"><br><br>
+      <input type="number" v-model="revenue" name="revenue" placeholder="45000000"><br><br>
 
       <label>Ticker (leave blank if none)</label><br>
-      <input type="text" v-model="ticker" name="ticker"><br><br>
+      <input type="text" v-model="ticker" name="ticker" placeholder="EXA"><br><br>
 
       <label>Established</label><br>
-      <input type="number" v-model="established" name="established"><br><br>
+      <input type="number" v-model="established" name="established" placeholder="1976"><br><br>
 
       <button type="submit">Add Company</button>
     </form>
@@ -66,6 +66,11 @@ async function submit() {
 <style lang="scss">
 #add-form {
   font-family: 'Montserrat', sans-serif;
+  width: 45vw;
+
+  input, textarea {
+    width: 100%;
+  }
 }
 
 #add-company-header {

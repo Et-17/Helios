@@ -18,12 +18,16 @@ import { vHelpText } from '../Help/help';
       v-help-text="{ id: 'human-readable-data', text: 'This controls whether or not formatting is applied to the data displayed on the company list.' }"
       for="data-formatting">Use human readable data</label>
     <br>
+    <input type="checkbox" name="high-contrast-mode">
+    <label class="option-label" for="high-contrast-mode">High contrast mode</label>
+    <br>
   </div>
 </template>
 
 <style lang="scss">
 #settings-container {
   width: 45vw;
+  line-height: 150%;
 }
 
 #settings-label {
@@ -34,5 +38,6 @@ import { vHelpText } from '../Help/help';
 
 .option-label {
   font-family: 'Montserrat', sans-serif;
+  line-height: 250%;
 }
 </style>

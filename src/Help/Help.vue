@@ -98,6 +98,7 @@ onUnmounted(async function () {
   background-color: var(--palette-help);
   box-shadow: var(--card-shadow);
   top: calc((100vh - 2 * var(--outer-gutter)) * 0.7 + var(--outer-gutter));
+  font-family: 'Montserrat', sans-serif;
 }
 
 .help-menu-button {
