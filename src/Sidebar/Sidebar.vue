@@ -64,6 +64,7 @@ watch(show_help_menu, async function (new_val: boolean) {
     <div id="active-page-indicator" :style="{ top: indicator_top }">
     </div>
     <PageBox v-for="[name, icon] in pages" :icon="icon" @click="current_page = name" ref="page_boxs" />
+    <hr id="button-section-division">
     <div id="bottom-buttons">
       <div></div><!--placeholder because PageBox strips margin-top for nth(2)-->
       <PageBox id="filters-toggle" :class="{ 'bottom-active': show_filter_window, 'hide': current_page != CompanyList }"
@@ -89,6 +90,16 @@ watch(show_help_menu, async function (new_val: boolean) {
   background-color: var(--palette-card);
   width: var(--icon-box-size);
   box-shadow: var(--card-shadow);
+}
+
+#button-section-division {
+  background-color: rgb(30, 30, 30);
+  opacity: 30%;
+  height: 2px;
+  border-radius: 10px;
+  margin-top: 50%;
+  margin-bottom: 50%;
+  width: 70%;
 }
 
 #active-page-indicator {

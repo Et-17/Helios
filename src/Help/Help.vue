@@ -43,15 +43,23 @@ async function update_cursor(old_elem: HTMLElement, new_elem: HTMLElement) {
   focus_elem(new_elem);
 }
 
+let current_element_border = "";
+let current_element_borderRadius = "";
+let current_element_borderStyle = "";
+
 async function clear_elem(elem: HTMLElement) {
-  elem.style.border = "";
-  elem.style.borderRadius = "0px";
-  elem.style.borderStyle = "";
+  elem.style.border = current_element_border;
+  elem.style.borderRadius = current_element_borderRadius;
+  elem.style.borderStyle = current_element_borderStyle;
 }
 
 async function focus_elem(elem: HTMLElement) {
+  let styles = window.getComputedStyle(elem);
+  current_element_border = styles.getPropertyValue('border');
   elem.style.border = "10px var(--palette-help)";
+  current_element_borderRadius = styles.getPropertyValue('border-radius');
   elem.style.borderRadius = "5px";
+  current_element_borderStyle = styles.getPropertyPriority('border-style');
   elem.style.borderStyle = "solid";
 }
 
