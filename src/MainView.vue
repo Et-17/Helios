@@ -4,6 +4,7 @@ import CompanyList from './CompanyList/CompanyList.vue'
 import FilterMenu from './CompanyList/FilterMenu.vue'
 import { ref, type Component, computed } from 'vue';
 import { vHelpText } from './Help/help';
+import { high_contrast_mode } from './Settings/settingsManagement';
 
 const props = defineProps<{
   page: Component,
@@ -16,15 +17,15 @@ const show_selector = computed(() => props.selector_window_open && props.page ==
 </script>
 
 <template>
-  <div id="main-block" :class="{ show_filters: show_filter, show_selector: show_selector }">
+  <div id="main-block" :class="{ show_filters: show_filter, show_selector: show_selector, 'high-contrast-enable': high_contrast_mode }">
     <Transition name="pages" mode="out-in">
       <!-- <KeepAlive> -->
       <component :is="page" />
       <!-- </KeepAlive> -->
     </Transition>
   </div>
-  <FilterMenu id="filter-block" :class="{ show_filters: show_filter, show_selector: show_selector }" />
-  <ColumnSelector id="column-selector" :class="{ show_selector: show_selector }" />
+  <FilterMenu id="filter-block" :class="{ show_filters: show_filter, show_selector: show_selector, 'high-contrast-enable': high_contrast_mode }" />
+  <ColumnSelector id="column-selector" :class="{ show_selector: show_selector, 'high-contrast-enable': high_contrast_mode }" />
 </template>
 
 <style lang="scss">

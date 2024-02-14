@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { use_human_readable_column_names, use_human_readable_data } from './settingsManagement';
+import { use_human_readable_column_names, use_human_readable_data, high_contrast_mode } from './settingsManagement';
 import { vHelpText } from '../Help/help';
 </script>
 
@@ -18,8 +18,8 @@ import { vHelpText } from '../Help/help';
       v-help-text="{ id: 'human-readable-data', text: 'This controls whether or not formatting is applied to the data displayed on the company list.' }"
       for="data-formatting">Use human readable data</label>
     <br>
-    <input type="checkbox" name="high-contrast-mode">
-    <label class="option-label" for="high-contrast-mode">High contrast mode</label>
+    <input type="checkbox" name="high-contrast-mode" v-model="high_contrast_mode">
+    <label class="option-label" for="high-contrast-mode" v-help-text="{id:'high-contrast-mode', text: 'This will enable a high contrast mode, which makes adjacent colors stand out more, to make Helios easier to use for some people.'}">High contrast mode</label>
     <br>
   </div>
 </template>
