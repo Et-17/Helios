@@ -30,10 +30,15 @@ onMounted(update_companies)
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 :root {
-  --palette-background: #FFFFB3;
-  --palette-card: #B3B3FF;
-  --palette-highlight: #FFB3D9;
-  --palette-help: #B3FFD9;
+  // --palette-background: #FFFFB3;
+  // --palette-background: #FFECB3;
+  --palette-background: #FFD9B3;
+  // --palette-card: #B3B3FF;
+  --palette-card: #FFECB3;
+  // --palette-highlight: #FFB3D9;
+  --palette-highlight: #FFFFB3;
+  // --palette-help: #B3FFD9;
+  --palette-help: #C6FFB3;
   --outer-gutter: 40px;
   --inner-gutter: 20px;
   --icon-box-size: 72px;
