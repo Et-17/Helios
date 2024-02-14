@@ -5,19 +5,26 @@ import { use_human_readable_column_names } from '@/Settings/settingsManagement';
 
 <template>
   <div>
-    <template v-for="column in columnkeys">
-      <input type="checkbox" :id="`filter-menu-line-${column}`" :value="column" v-model="shown_columns">
-      <label :for="`filter-menu-line-${column}`" class="column-selector-label">
-        {{ use_human_readable_column_names ? frontend_column_names[column as keyof Company] : column }}
-      </label>
-      <br>
-    </template>
+    <div id="column-select-inner">
+      <template v-for="column in columnkeys">
+        <input type="checkbox" :id="`filter-menu-line-${column}`" :value="column" v-model="shown_columns">
+        <label :for="`filter-menu-line-${column}`" class="column-selector-label">
+          {{ use_human_readable_column_names ? frontend_column_names[column as keyof Company] : column }}
+        </label>
+        <br>
+      </template>
+    </div>
   </div>
 </template>
 
 <style scoped>
 div {
-  padding: var(--inner-gutter);
+  box-sizing: border-box;
+}
+
+#column-select-inner {
+  margin: var(--inner-gutter);
+  white-space: nowrap;
 }
 
 .column-selector-label {

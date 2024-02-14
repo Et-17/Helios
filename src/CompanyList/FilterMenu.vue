@@ -60,7 +60,7 @@ async function removeFilter(index: number) {
           </td>
           <td>
             <select id="newfilteroperation" v-model="selected_operation"
-              v-help-text="{ id: 'filter-operation-select', text: 'The actual test being done by the filter. For example, if you select > then it only show data that is greater than the filter\' value.' }">
+              v-help-text="{ id: 'filter-operation-select', text: 'The actual test being done by the filter. For example, if you select \'>\' then it only show data that is greater than the filter value.' }">
               <option :value="operation" v-for="operation in operations">{{ operation }}</option>
             </select>
           </td>

@@ -21,9 +21,9 @@ onMounted(update_companies)
 </script>
 
 <template>
-  <Sidebar :class="high_contrast_style" @page-change="p => current_page = p" @toggle-filters="p => show_filter_window = p"
+  <Sidebar :class="{'high-contrast-enable': high_contrast_mode}" @page-change="p => current_page = p" @toggle-filters="p => show_filter_window = p"
     @toggle-selector="p => show_selector_window = p" @toggle-help-menu="p => show_help_menu = p" />
-  <MainView :class="high_contrast_style" :page="current_page" :filter_window_open="show_filter_window" :selector_window_open="show_selector_window" />
+  <MainView :class="{'high-contrast-enable': high_contrast_mode}" :page="current_page" :filter_window_open="show_filter_window" :selector_window_open="show_selector_window" />
   <Help :class="{'high-contrast-enable': high_contrast_mode}" v-if="show_help_menu" @exit="() => { show_help_menu = false; show_filter_window = false }" />
 </template>
 

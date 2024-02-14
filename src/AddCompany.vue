@@ -43,7 +43,7 @@ async function submit() {
       <label>Description</label><br />
       <textarea v-model="description" name="description" placeholder="This is an example company"></textarea><br /><br />
 
-      <label>Address (please split lines)</label><br />
+      <label>Address</label><br />
       <textarea v-model="address" name="address" placeholder="1234 Example St. N&NewLine;St. Petersburg, Florida 33711"></textarea><br /><br />
 
       <label>Phone</label><br />

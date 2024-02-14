@@ -69,7 +69,7 @@ watch(show_help_menu, async function (new_val: boolean) {
       <div></div><!--placeholder because PageBox strips margin-top for nth(2)-->
       <PageBox id="filters-toggle" :class="{ 'bottom-active': show_filter_window, 'hide': current_page != CompanyList }"
         icon="filter_alt" @click="show_filter_window = !show_filter_window"
-        v-help-text="{ id: 'filter-toggle-button', text: 'This button toggles the filter menu.' }" />
+        v-help-text="{ id: 'filter-toggle-button', text: 'This button toggles the menu that allows you to add filters to the data.' }" />
       <PageBox id="selector-toggle"
         :class="{ 'bottom-active': show_selector_window, 'hide': current_page != CompanyList }" icon="sort"
         @click="show_selector_window = !show_selector_window"

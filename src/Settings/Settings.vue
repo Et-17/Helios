@@ -10,12 +10,12 @@ import { vHelpText } from '../Help/help';
     </h1><br>
     <input type="checkbox" name="column-names" v-model="use_human_readable_column_names">
     <label class="option-label"
-      v-help-text="{ id: 'human-readable-columns', text: 'This control whether or not it uses the more human readable colun names or the actual names in the database.' }"
+      v-help-text="{ id: 'human-readable-columns', text: 'This controls whether it uses the more human readable column names or the raw names from database.' }"
       for="column-names">Use human readable column names</label>
     <br>
     <input type="checkbox" name="data-formatting" v-model="use_human_readable_data">
     <label class="option-label"
-      v-help-text="{ id: 'human-readable-data', text: 'This controls whether or not formatting is applied to the data displayed on the company list.' }"
+      v-help-text="{ id: 'human-readable-data', text: 'This controls whether formatting is applied to the data displayed on the company list.' }"
       for="data-formatting">Use human readable data</label>
     <br>
     <input type="checkbox" name="high-contrast-mode" v-model="high_contrast_mode">

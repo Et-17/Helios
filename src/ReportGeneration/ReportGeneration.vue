@@ -71,7 +71,7 @@ async function genReportBody() {
     <br>
     <input type="checkbox" name="header-type" v-model="human_readable_headers"><label id="header-type-label"
       for="header-type"
-      v-help-text="{ id: 'human-readable-headers-report-gen', text: 'This will use the human readable headers that are diplayed on the company list in the report. It will only change the column names, not the actual data.' }">Use
+      v-help-text="{ id: 'human-readable-headers-report-gen', text: 'This will make the report use the human readable headers that are diplayed on the company list in the report. It will only change the column names, not the actual data.' }">Use
       human readable names</label>
     <br>
     <br>
