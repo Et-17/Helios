@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { use_human_readable_column_names, use_human_readable_data } from './settingsManagement';
+import { vHelpText } from '../Help/help';
 </script>
 
 <template>
@@ -8,10 +9,14 @@ import { use_human_readable_column_names, use_human_readable_data } from './sett
       Settings
     </h1><br>
     <input type="checkbox" name="column-names" v-model="use_human_readable_column_names">
-    <label class="option-label" for="column-names">Use human readable column names</label>
+    <label class="option-label"
+      v-help-text="{ id: 'human-readable-columns', text: 'This control whether or not it uses the more human readable colun names or the actual names in the database.' }"
+      for="column-names">Use human readable column names</label>
     <br>
     <input type="checkbox" name="data-formatting" v-model="use_human_readable_data">
-    <label class="option-label" for="data-formatting">Use human readable data</label>
+    <label class="option-label"
+      v-help-text="{ id: 'human-readable-data', text: 'This controls whether or not formatting is applied to the data displayed on the company list.' }"
+      for="data-formatting">Use human readable data</label>
     <br>
   </div>
 </template>

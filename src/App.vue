@@ -4,19 +4,22 @@ import { update_companies } from './companyManagement';
 import Sidebar from './Sidebar/Sidebar.vue';
 import CompanyList from './CompanyList/CompanyList.vue';
 import MainView from './MainView.vue';
+import Help from './Help/Help.vue';
 
 const current_page: ShallowRef<Component> = shallowRef(CompanyList);
 
 const show_filter_window: Ref<boolean> = ref(false);
 const show_selector_window: Ref<boolean> = ref(false);
+const show_help_menu: Ref<boolean> = ref(false);
 
 onMounted(update_companies)
 </script>
 
 <template>
   <Sidebar @page-change="p => current_page = p" @toggle-filters="p => show_filter_window = p"
-    @toggle-selector="p => show_selector_window = p" />
+    @toggle-selector="p => show_selector_window = p" @toggle-help-menu="p => show_help_menu = p" />
   <MainView :page="current_page" :filter_window_open="show_filter_window" :selector_window_open="show_selector_window" />
+  <Help v-if="show_help_menu" />
 </template>
 
 <style lang="scss">
@@ -30,6 +33,7 @@ onMounted(update_companies)
   --palette-background: #FFFFB3;
   --palette-card: #B3B3FF;
   --palette-highlight: #FFB3D9;
+  --palette-help: #B3FFD9;
   --outer-gutter: 40px;
   --inner-gutter: 20px;
   --icon-box-size: 72px;

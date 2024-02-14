@@ -11,6 +11,7 @@ const emit = defineEmits<{
   (e: 'page-change', page: Component): void
   (e: 'toggle-filters', show: boolean): void
   (e: 'toggle-selector', show: boolean): void
+  (e: 'toggle-help-menu', show: boolean): void
 }>();
 
 // This has all the pages being shown in the sidebar in the format of
@@ -38,6 +39,7 @@ const indicator_top = computed(() => page_boxs.value[page_nums.get(current_page.
 
 const show_filter_window = ref(false);
 const show_selector_window = ref(false);
+const show_help_menu = ref(false);
 
 watch(current_page, async function (new_val: Component) {
   emit('page-change', new_val);
@@ -49,6 +51,10 @@ watch(show_filter_window, async function (new_val: boolean) {
 
 watch(show_selector_window, async function (new_val: boolean) {
   emit('toggle-selector', new_val);
+})
+
+watch(show_help_menu, async function (new_val: boolean) {
+  emit('toggle-help-menu', new_val);
 })
 </script>
 
@@ -64,6 +70,8 @@ watch(show_selector_window, async function (new_val: boolean) {
       <PageBox id="selector-toggle"
         :class="{ 'bottom-active': show_selector_window, 'hide': current_page != CompanyList }" icon="sort"
         @click="show_selector_window = !show_selector_window" />
+      <PageBox id="help-toggle" :class="{ 'bottom-active': show_help_menu }" icon="question_mark"
+        @click="show_help_menu = !show_help_menu" />
     </div>
   </div>
 </template>
