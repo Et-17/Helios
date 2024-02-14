@@ -2,10 +2,6 @@
 import { ref, computed, type Ref, onMounted, onUnmounted } from 'vue';
 import { elements_with_help_text } from './help';
 
-const emit = defineEmits<{
-  (e: 'exit'): void
-}>();
-
 const current_texts: Ref<[string, HTMLElement][]> = ref([]);
 const current_page_num: Ref<number> = ref(0);
 
@@ -33,11 +29,17 @@ async function move_cursor_up() {
 
 async function move_cursor_down() {
   let old_elem = current_texts.value[current_page_num.value][1];
-  current_page_num.value = (current_page_num.value - 1) % current_texts.value.length;
+  if (current_page_num.value == 0) {
+    // if we reach the end, wrap around to the top
+    current_page_num.value = current_texts.value.length - 1;
+  } else {
+    current_page_num.value = (current_page_num.value - 1) % current_texts.value.length;
+  }
   let new_elem = current_texts.value[current_page_num.value][1];
   update_cursor(old_elem, new_elem);
 }
 
+// this updates the highlighting of the element
 async function update_cursor(old_elem: HTMLElement, new_elem: HTMLElement) {
   clear_elem(old_elem);
   focus_elem(new_elem);
@@ -77,9 +79,6 @@ onUnmounted(async function () {
       {{ (current_texts[current_page_num] ?? [""])[0] }}
     </p>
     <div id="help-menu-buttons-container">
-      <button class="help-menu-button" @click="$emit('exit')">
-        Exit
-      </button>
       <button class="help-menu-button" @click="move_cursor_up">
         &gt;
       </button>
