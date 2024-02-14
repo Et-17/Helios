@@ -76,15 +76,18 @@ onUnmounted(async function () {
     <p>
       {{ (current_texts[current_page_num] ?? [""])[0] }}
     </p>
-    <button class="help-menu-button" @click="$emit('exit')">
-      Exit
-    </button>
-    <button class="help-menu-button" @click="move_cursor_up">
-      &gt;
-    </button>
-    <button class="help-menu-button" @click="move_cursor_down">
-      &lt;
-    </button>
+    <div id="help-menu-buttons-container">
+      <button class="help-menu-button" @click="$emit('exit')">
+        Exit
+      </button>
+      <button class="help-menu-button" @click="move_cursor_up">
+        &gt;
+      </button>
+      <button class="help-menu-button" @click="move_cursor_down">
+        &lt;
+      </button>
+    </div>
+    <span class="material-icons" id="help-menu-logo">question_mark</span>
   </div>
 </template>
 
@@ -99,6 +102,20 @@ onUnmounted(async function () {
   box-shadow: var(--card-shadow);
   top: calc((100vh - 2 * var(--outer-gutter)) * 0.7 + var(--outer-gutter));
   font-family: 'Montserrat', sans-serif;
+}
+
+#help-menu-buttons-container {
+  position: absolute;
+  bottom: var(--inner-gutter);
+  right: var(--inner-gutter);
+}
+
+#help-menu-logo {
+  position: absolute;
+  bottom: var(--inner-gutter);
+  left: var(--inner-gutter);
+  font-size: 2rem;
+  opacity: 20%;
 }
 
 .help-menu-button {

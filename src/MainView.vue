@@ -98,7 +98,7 @@ const show_selector = computed(() => props.selector_window_open && props.page ==
 
   &.show_selector {
     opacity: 100;
-    width: 250px;
+    width: 210px;
   }
 
   &:not(.show_selector) {

@@ -4,7 +4,7 @@ import { use_human_readable_column_names } from '@/Settings/settingsManagement';
 </script>
 
 <template>
-  <div id="column-inner">
+  <div>
     <template v-for="column in columnkeys">
       <input type="checkbox" :id="`filter-menu-line-${column}`" :value="column" v-model="shown_columns">
       <label :for="`filter-menu-line-${column}`" class="column-selector-label">
@@ -16,7 +16,7 @@ import { use_human_readable_column_names } from '@/Settings/settingsManagement';
 </template>
 
 <style scoped>
-#column-inner {
+div {
   padding: var(--inner-gutter);
 }
 
