@@ -4,6 +4,7 @@ import { companies, shown_columns, frontend_column_names } from './../companyMan
 import { save, message } from '@tauri-apps/api/dialog';
 import { BaseDirectory, writeTextFile } from '@tauri-apps/api/fs';
 import { ref } from 'vue';
+import { vHelpText } from '@/Help/help';
 
 // stores a csv report to a file
 async function storeReport() {
@@ -65,7 +66,9 @@ async function genReportBody() {
     </p>
     <br>
     <input type="checkbox" name="header-type" v-model="human_readable_headers"><label id="header-type-label"
-      for="header-type">Use human readable names</label>
+      for="header-type"
+      v-help-text="{ id: 'human-readable-headers-report-gen', text: 'This will use the human readable headers that are diplayed on the company list in the report. It will only change the column names, not the actual data.' }">Use
+      human readable names</label>
     <br>
     <br>
     <button @click="storeReport">Generate Report</button>
